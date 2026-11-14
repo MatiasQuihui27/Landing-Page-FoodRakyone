@@ -16,6 +16,8 @@ state.view = 'welcome';
 
 // ---------- Navegación ----------
 navigate = function (view, params = {}) {
+    if (view === 'inicio') view = state.loggedIn ? 'descubrir' : 'welcome';
+    if (view === 'perfil') view = state.role === 'consumidor' ? 'perfil-consumidor' : 'datos-local';
     if (PRIVADAS.includes(view) && !state.loggedIn) { view = 'login'; params = { role: state.role }; }
     state.view = view;
     const nuevas = { resultados: renderResultados, filtros: renderFiltros, mapa: renderMapa, reservas: renderReservas, 'al-por-mayor': renderMayorista };
@@ -47,20 +49,12 @@ function handleLogin(e) {
 }
 
 function renderHeader() {
-    const bottom = document.getElementById('bottom-nav');
-    const logo = `<a class="logo" onclick="navigate('${state.loggedIn ? 'descubrir' : 'welcome'}')">🛒 FoodRakyone</a>`;
-    if (!state.loggedIn) {
-        header.innerHTML = `${logo}<div class="nav-links"><a onclick="alert('Centro de ayuda FoodRakyone')">Ayuda</a></div>`;
-        bottom.innerHTML = '';
-        return;
-    }
-    const perfil = state.role === 'consumidor' ? 'perfil-consumidor' : 'datos-local';
-    const items = [['descubrir', 'Descubrir', '🔍'], ['mapa', 'Mapa', '📍'], ['reservas', 'Reservas', '🧾'], ['al-por-mayor', 'Al por mayor', '📦'], [perfil, 'Perfil', '👤']];
-    const activo = v => (state.view === v || (v === 'descubrir' && ['resultados', 'filtros', 'producto'].includes(state.view))) ? 'active' : '';
-    header.innerHTML = `${logo}
-        <nav class="nav-links menu">${items.map(([v, t]) => `<a class="${activo(v)}" onclick="navigate('${v}')">${t}</a>`).join('')}</nav>
-        <div class="nav-links"><a onclick="alert('Sin notificaciones nuevas')">Notificaciones</a><a onclick="logout()">Cuenta · Salir</a></div>`;
-    bottom.innerHTML = items.map(([v, t, i]) => `<a class="${activo(v)}" onclick="navigate('${v}')"><span>${i}</span>${t}</a>`).join('');
+    // La cabecera y la barra inferior ya están escritas en index.html; aquí solo se muestran u ocultan.
+    const on = state.loggedIn;
+    ['menu', 'lnk-notif', 'lnk-cuenta', 'bottom-nav'].forEach(id => { document.getElementById(id).hidden = !on; });
+    const v = ['resultados', 'filtros', 'producto'].includes(state.view) ? 'descubrir'
+        : ['perfil-consumidor', 'datos-local', 'editar-perfil'].includes(state.view) ? 'perfil' : state.view;
+    document.querySelectorAll('[data-v]').forEach(a => a.classList.toggle('active', a.dataset.v === v));
 }
 
 // ---------- Utilidades de búsqueda ----------
@@ -224,4 +218,4 @@ function renderMayorista() {
         ${state.role === 'comerciante' ? `<div class="btn-group"><button class="btn" onclick="navigate('categorias-comercio')">Configurar venta por volumen</button></div>` : ''}`;
 }
 
-navigate('welcome'); // vuelve a pintar la cabecera con la versión nueva
+renderHeader(); // la pantalla inicial ya viene escrita en index.html

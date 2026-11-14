@@ -3,16 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodRakyone</title>
-    <!-- Rutas relativas: con "/css/..." el sitio se rompe al abrirlo como archivo o en GitHub Pages -->
+    <meta name="description" content="FoodRakyone conecta comercios y consumidores de Lima Metropolitana para rescatar excedentes alimentarios.">
+    <title>FoodRakyone - Bienvenido</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/descubrir.css">
 </head>
 <body>
-    <!-- main.js y flujo2.js dibujan la cabecera, las pantallas y la barra inferior -->
-    <header id="main-header"></header>
-    <main id="app" class="container"></main>
-    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación principal"></nav>
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+
+        <!-- Menú principal: se muestra solo cuando el usuario inició sesión -->
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;" hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <!-- Pantalla de bienvenida (Flujo 1). main.js y flujo2.js reemplazan este contenido al navegar. -->
+    <main id="app" class="container">
+        <h1>Bienvenido a FoodRakyone</h1>
+        <p class="subtitle">Rescata excedentes alimentarios en Lima Metropolitana.</p>
+
+        <noscript><div class="alert error">Activa JavaScript para iniciar sesión y usar FoodRakyone.</div></noscript>
+
+        <div class="grid-2">
+            <div>
+                <div class="placeholder-graphic">
+                    🛍️<br><strong>Alimentos, comercio y recojo</strong>
+                </div>
+
+                <h2>¿Cómo quieres usar FoodRakyone?</h2>
+                <p class="subtitle">Selecciona el tipo de cuenta que deseas utilizar</p>
+
+                <div class="role-grid">
+                    <div class="role-card consumer-card">
+                        <h3>Consumidor</h3>
+                        <p>Encuentra, reserva y recoge alimentos</p>
+                        <button class="btn-green" onclick="navigate('login', {role: 'consumidor'})">Iniciar sesión</button>
+                    </div>
+
+                    <div class="role-card merchant-card">
+                        <h3>Comerciante</h3>
+                        <p>Publica restos y gestiona tus ventas</p>
+                        <button class="btn-blue" onclick="navigate('registro-comercio')">Registrar negocio</button>
+                        <p class="card-sublink">
+                            <a href="#" onclick="navigate('login', {role: 'comerciante'}); return false;">Registrarme · Iniciar sesión</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="aside-box">
+                <h3>Dos roles, una plataforma</h3>
+                <p>Consumidor: descubre, reserva y recoge.<br>Comercio: publica, gestiona y entrega.</p>
+                <hr>
+                <h4>¿Cómo funciona?</h4>
+                <ol style="padding-left:18px; margin-top:8px; line-height:1.6;">
+                    <li>Regístrate o inicia sesión.</li>
+                    <li>Descubre excedentes cerca de ti.</li>
+                    <li>Reserva, paga y recoge con tu código.</li>
+                </ol>
+                <hr>
+                <h4>Impacto en Lima Metropolitana</h4>
+                <p>Reducimos el desperdicio conectando comercios con consumidores locales cada día.</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo con sesión iniciada y en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
 
     <script src="/js/main.js"></script>
     <script src="/js/flujo2.js"></script>
