@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FoodRakyone conecta comercios y consumidores de Lima Metropolitana para rescatar excedentes alimentarios.">
+    <meta name="description"
+        content="FoodRakyone conecta comercios y consumidores de Lima Metropolitana para rescatar excedentes alimentarios.">
     <title>FoodRakyone - Bienvenido</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/descubrir.css">
 </head>
+
 <body>
     <a class="skip" href="#app">Saltar al contenido</a>
 
@@ -24,7 +27,8 @@
         </nav>
 
         <div class="nav-links right-links">
-            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;" hidden>Notificaciones</a>
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;"
+                hidden>Notificaciones</a>
             <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
             <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
         </div>
@@ -35,7 +39,9 @@
         <h1>Bienvenido a FoodRakyone</h1>
         <p class="subtitle">Rescata excedentes alimentarios en Lima Metropolitana.</p>
 
-        <noscript><div class="alert error">Activa JavaScript para iniciar sesión y usar FoodRakyone.</div></noscript>
+        <noscript>
+            <div class="alert error">Activa JavaScript para iniciar sesión y usar FoodRakyone.</div>
+        </noscript>
 
         <div class="grid-2">
             <div>
@@ -50,7 +56,8 @@
                     <div class="role-card consumer-card">
                         <h3>Consumidor</h3>
                         <p>Encuentra, reserva y recoge alimentos</p>
-                        <button class="btn-green" onclick="navigate('login', {role: 'consumidor'})">Iniciar sesión</button>
+                        <button class="btn-green" onclick="navigate('login', {role: 'consumidor'})">Iniciar
+                            sesión</button>
                     </div>
 
                     <div class="role-card merchant-card">
@@ -58,7 +65,8 @@
                         <p>Publica restos y gestiona tus ventas</p>
                         <button class="btn-blue" onclick="navigate('registro-comercio')">Registrar negocio</button>
                         <p class="card-sublink">
-                            <a href="#" onclick="navigate('login', {role: 'comerciante'}); return false;">Registrarme · Iniciar sesión</a>
+                            <a href="#" onclick="navigate('login', {role: 'comerciante'}); return false;">Registrarme ·
+                                Iniciar sesión</a>
                         </p>
                     </div>
                 </div>
@@ -91,11 +99,13 @@
         <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
         <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
         <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
-        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por mayor</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por
+            mayor</a>
         <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
     </nav>
 
     <script src="/js/main.js"></script>
     <script src="/js/flujo2.js"></script>
 </body>
+
 </html>

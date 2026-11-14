@@ -109,7 +109,7 @@ function renderDescubrir() {
     const categorias = `<div class="sidebar-box"><h3 class="azul">Categorías</h3><div class="cat-list">${CATEGORIAS.map(([c, i]) =>
         `<label><input type="checkbox" ${b.cats.includes(c) ? 'checked' : ''} onchange="toggleFiltroCat('${c}'); navigate('resultados')"> ${i} ${c}</label>`).join('')}</div></div>`;
     return `<span class="zona-badge">La Victoria · ${b.radio} km</span>
-        <p class="crumb">Inicio › Descubrir</p>
+        <p class="crumb">Inicio> Descubrir</p>
         <h1>Descubre excedentes cercanos</h1>
         <p class="subtitle">La Victoria, Lima · Miércoles 7 de octubre de 2026</p>
         <div class="layout-grid"><div>
@@ -131,12 +131,12 @@ function renderDescubrir() {
 
 function renderResultados() {
     const b = state.busqueda, lista = filtradas(), vacio = !lista.length, s = lista.length > 1 ? 's' : '';
-    return `<p class="crumb">Inicio › Descubrir › Resultados</p>
+    return `<p class="crumb">Inicio> Descubrir> Resultados</p>
         <h1>${vacio ? 'Resultados de búsqueda — Sin coincidencias' : `Resultados para "${b.q || 'todas las ofertas'}"`}</h1>
         <p class="subtitle">${vacio ? `Búsqueda por producto: "${b.q}"` : `${lista.length} oferta${s} encontrada${s} dentro de ${b.radio} km.`}</p>
         <div class="layout-grid"><div>
             <form class="search-box" onsubmit="buscar(event)"><strong>Buscar por producto</strong><input id="q" value="${b.q}" placeholder="Escribe el nombre del alimento"></form>
-            ${vacio ? `<div class="alert">ℹ️ No encontramos ofertas para "${b.q}" en tu zona.</div>
+            ${vacio ? `<div class="alert">!No encontramos ofertas para "${b.q}" en tu zona.</div>
                 <h2>Prueba otra búsqueda</h2><p class="subtitle">Cambia el nombre del producto, limpia los filtros o amplía el radio.</p>`
             : `<label class="orden">Ordenar resultados
                     <select onchange="state.busqueda.orden=this.value; navigate('resultados')">
@@ -154,7 +154,7 @@ function renderResultados() {
 
 function renderFiltros() {
     const b = state.busqueda;
-    return `<p class="crumb">Inicio › Descubrir › Filtros</p>
+    return `<p class="crumb">Inicio> Descubrir> Filtros</p>
         <h1>Filtrar ofertas</h1><p class="subtitle">Ajusta el radio, las categorías y el orden de los resultados.</p>
         <form style="max-width:560px" onsubmit="aplicarFiltros(event)">
             <div class="form-group"><label>Radio de búsqueda</label>
@@ -169,7 +169,7 @@ function renderFiltros() {
 }
 
 function renderMapa() {
-    return `<p class="crumb">Inicio › Mapa</p><h1>Mapa de excedentes</h1>
+    return `<p class="crumb">Inicio> Mapa</p><h1>Mapa de excedentes</h1>
         <p class="subtitle">Comercios con ofertas a ${state.busqueda.radio} km o menos de Av. Canadá 100, La Victoria.</p>
         <div class="placeholder-graphic mapa">🗺️<br><strong>Mapa de ofertas cercanas</strong></div>
         <div class="card-grid">${filtradas().map(o => `<div class="offer-card"><strong>📍 ${o.store}</strong>
@@ -180,7 +180,7 @@ function renderMapa() {
 function renderProducto(id) {
     const o = state.ofertas.find(x => x.id === id);
     if (!o) return `<p>Oferta no encontrada.</p><button class="btn" onclick="navigate('descubrir')">Volver a Descubrir</button>`;
-    return `<p class="crumb">Inicio › Descubrir › ${o.name}</p>
+    return `<p class="crumb">Inicio> Descubrir> ${o.name}</p>
         <h1>${o.name}</h1><p class="subtitle">${o.store} · 4.5/5 · aprox. ${o.distance}</p>
         <div class="layout-grid"><div>
             <div class="offer-img-placeholder" style="height:180px"><span style="font-size:3rem">${o.icon}</span></div>
@@ -202,16 +202,16 @@ function renderProducto(id) {
 
 function renderReservas() {
     const lista = state.reservas.map(r => `<div class="favorite-item"><div><strong>${r.n}x ${r.nombre}</strong><br>
-        <small>${r.store} · Recojo hoy 18:00–20:00</small><br><small>Total ${dinero(r.total)}</small></div>
+        <small>${r.store} · Recojo hoy 18:00-20:00</small><br><small>Total ${dinero(r.total)}</small></div>
         <div class="codigo">Código<br><b>${r.codigo}</b></div></div>`).join('');
-    return `<p class="crumb">Inicio › Reservas</p><h1>Mis reservas</h1><p class="subtitle">Muestra tu código al recoger en el local.</p>
-        ${lista || `<div class="alert">ℹ️ Aún no tienes reservas. Elige una oferta y confirma tu primera reserva.</div>
+    return `<p class="crumb">Inicio> Reservas</p><h1>Mis reservas</h1><p class="subtitle">Muestra tu código al recoger en el local.</p>
+        ${lista || `<div class="alert">! Aún no tienes reservas. Elige una oferta y confirma tu primera reserva.</div>
         <button class="btn" onclick="navigate('descubrir')">Descubrir ofertas</button>`}`;
 }
 
 function renderMayorista() {
     const lotes = [['Jaba de tomates', '🍅', 45, '3 jabas'], ['Saco de papa', '🥔', 60, '2 sacos'], ['Caja de yogures', '🥛', 38, '5 cajas']];
-    return `<p class="crumb">Inicio › Al por mayor</p><h1>Al por mayor</h1>
+    return `<p class="crumb">Inicio> Al por mayor</p><h1>Al por mayor</h1>
         <p class="subtitle">Lotes en jabas, sacos y cajas para comercios minoristas.</p>
         <div class="card-grid">${lotes.map(([n, i, p, s]) => `<div class="offer-card"><span style="font-size:2rem">${i}</span><strong>${n}</strong>
             <div class="offer-price">${dinero(p)}</div><small>${state.comercio.nombre} · ${s} disponibles</small></div>`).join('')}</div>
