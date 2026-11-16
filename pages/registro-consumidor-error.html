@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="FoodRakyone conecta comercios y consumidores de Lima Metropolitana para rescatar excedentes alimentarios.">
+    <title>FoodRakyone - Crear cuenta - Correo duplicado</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/descubrir.css">
+</head>
+
+<body data-view="registro-consumidor">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+
+        <!-- Menú principal: se muestra solo cuando el usuario inició sesión -->
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;"
+                hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <!-- Crear cuenta - Correo duplicado -->
+    <main id="app" class="container">
+        <h1>Crear cuenta de consumidor — Correo duplicado</h1>
+        
+            <div class="alert error">
+                <strong>⚠️ Revisa la información</strong><br>
+                Este correo ya pertenece a una cuenta. Inicia sesión o usa otro correo.
+            </div>
+        
+        <div class="grid-2">
+            <form onsubmit="handleRegistroConsumidor(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Nombre completo *</label>
+                        <input type="text" id="reg-nombre" value="Ana Torres" required>
+                    </div>
+                    <div class="form-group error-field">
+                        <label>Correo electrónico *</label>
+                        <input type="email" id="reg-correo" value="ana.torres@correo.pe" required>
+                        <span class="helper-text">Debe tener un formato válido y no estar registrado.</span>
+                        <span class="error-msg">⚠️ El correo ya está registrado.</span>
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:50%">
+                    <label>Contraseña *</label>
+                    <input type="password" value="********" required>
+                    <span class="helper-text">Usa una contraseña segura.</span>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn">Corregir correo</button>
+                    <button type="button" class="btn btn-outline" onclick="navigate('welcome')">Volver</button>
+                </div>
+            </form>
+            <aside class="aside-box">
+                <h4>Datos requeridos</h4>
+                <p>Los campos marcados con * son obligatorios.</p>
+                <h4>Prueba de validación</h4>
+                <p>Si ingresas <b>ana.torres@correo.pe</b> simulará el error de correo duplicado.</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo con sesión iniciada y en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por
+            mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
+
+    <script src="/js/state.js"></script>
+    <script src="/js/shared.js"></script>
+    <script src="/js/registro-consumidor-error.js"></script>
+</body>
+
+</html>

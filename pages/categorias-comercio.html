@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="FoodRakyone conecta comercios y consumidores de Lima Metropolitana para rescatar excedentes alimentarios.">
+    <title>FoodRakyone - Categorías y venta por volumen</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/descubrir.css">
+</head>
+
+<body data-view="categorias-comercio">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+
+        <!-- Menú principal: se muestra solo cuando el usuario inició sesión -->
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;"
+                hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <!-- Categorías y venta por volumen -->
+    <main id="app" class="container">
+        <h1>Categorías y venta por volumen </h1>
+        <p class="subtitle">Define qué productos ofrece tu comercio.</p>
+
+        <div class="grid-2">
+            <div>
+                <h2>Categorías públicas</h2>
+                <div class="check-grid">
+                    
+                        <label class="check-item">
+                            <input type="checkbox" checked onchange="toggleCat('Panadería')">
+                            Panadería
+                        </label>
+                    
+                        <label class="check-item">
+                            <input type="checkbox" checked onchange="toggleCat('Lácteos')">
+                            Lácteos
+                        </label>
+                    
+                        <label class="check-item">
+                            <input type="checkbox"  onchange="toggleCat('Abarrotes')">
+                            Abarrotes
+                        </label>
+                    
+                        <label class="check-item">
+                            <input type="checkbox"  onchange="toggleCat('Comida preparada')">
+                            Comida preparada
+                        </label>
+                    
+                        <label class="check-item">
+                            <input type="checkbox"  onchange="toggleCat('Frutas')">
+                            Frutas
+                        </label>
+                    
+                        <label class="check-item">
+                            <input type="checkbox"  onchange="toggleCat('Verduras')">
+                            Verduras
+                        </label>
+                    
+                </div>
+
+                <h2>Unidades predeterminadas habilitadas</h2>
+                
+                    <div class="check-grid">
+                        <label class="check-item"><input type="checkbox" checked> Jabas</label>
+                        <label class="check-item"><input type="checkbox" checked> Sacos</label>
+                        <label class="check-item"><input type="checkbox" checked> Cajas</label>
+                    </div>
+                
+
+                <div class="alert">
+                    <strong>ℹ️ Información</strong><br>
+                    Al guardar, tu ficha pública mostrará las categorías seleccionadas y el indicador "Venta por volumen".
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn" onclick="alert('Configuración guardada correctamente')">Guardar configuración</button>
+                    <button class="btn btn-outline" onclick="state.comercio.b2b = !state.comercio.b2b; renderCategoriasComercio()">
+                        Desactivar venta B2B
+                    </button>
+                </div>
+            </div>
+            <aside class="aside-box">
+                <strong>Tu local</strong>
+                <p>Bodega San Luis<br>Av. Canadá 120, La Victoria</p>
+                <hr>
+                <h4>Categorías activas</h4>
+                <p>[Panadería] [Lácteos]</p>
+                <h4>Estado B2B</h4>
+                <p>Venta al por mayor habilitada.</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo con sesión iniciada y en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por
+            mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
+
+    <script src="/js/state.js"></script>
+    <script src="/js/shared.js"></script>
+    <script src="/js/categorias-comercio.js"></script>
+</body>
+
+</html>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/descubrir.css">
 </head>
 
-<body>
+<body data-view="index">
     <a class="skip" href="#app">Saltar al contenido</a>
 
     <header id="main-header">
@@ -34,7 +34,7 @@
         </div>
     </header>
 
-    <!-- Pantalla de bienvenida (Flujo 1). main.js y flujo2.js reemplazan este contenido al navegar. -->
+    <!-- Bienvenido -->
     <main id="app" class="container">
         <h1>Bienvenido a FoodRakyone</h1>
         <p class="subtitle">Rescata excedentes alimentarios en Lima Metropolitana.</p>
@@ -104,8 +104,9 @@
         <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
     </nav>
 
-    <script src="/js/main.js"></script>
-    <script src="/js/flujo2.js"></script>
+    <script src="/js/state.js"></script>
+    <script src="/js/shared.js"></script>
+    <script src="/js/index.js"></script>
 </body>
 
 </html>

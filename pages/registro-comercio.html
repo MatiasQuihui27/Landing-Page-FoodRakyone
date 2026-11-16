@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="FoodRakyone conecta comercios y consumidores de Lima Metropolitana para rescatar excedentes alimentarios.">
+    <title>FoodRakyone - Registra tu comercio</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/descubrir.css">
+</head>
+
+<body data-view="registro-comercio">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+
+        <!-- Menú principal: se muestra solo cuando el usuario inició sesión -->
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;"
+                hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <!-- Registra tu comercio -->
+    <main id="app" class="container">
+        <h1>Registra tu comercio</h1>
+        <p class="subtitle">Formulario exclusivo para el responsable del establecimiento.</p>
+
+        
+
+        <div class="grid-2">
+            <form onsubmit="handleRegistroComercio(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Nombre del local *</label>
+                        <input type="text" id="com-nombre" value="Bodega San Luis" required>
+                    </div>
+                    <div class="form-group " id="group-direccion">
+                        <label>Dirección *</label>
+                        <input type="text" id="com-direccion" value="Av. Canadá 120, La Victoria" placeholder="Ingresar..." oninput="validarDireccionComercio()">
+                        <span class="error-msg" id="dir-err" style="display:none">⚠️ La dirección es obligatoria.</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono *</label>
+                        <input type="text" id="com-tel" value="987 654 321" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Rubro *</label>
+                        <select id="com-rubro">
+                            <option>Bodega / minimarket</option>
+                            <option>Panadería</option>
+                            <option>Restaurante</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo de acceso *</label>
+                        <input type="email" id="com-correo" value="local@sanluis.pe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña *</label>
+                        <input type="password" value="********" required>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" id="btn-reg-comercio" class="btn" >Registrar cuenta</button>
+                    <button type="button" class="btn btn-outline" onclick="navigate('login', {role:'comerciante'})">Iniciar Sesión</button>
+                    <button type="button" class="btn btn-outline" onclick="navigate('welcome')">Volver</button>
+                </div>
+            </form>
+            <aside class="aside-box">
+                <h4>Registro de comercio</h4>
+                <p>Al registrar tu comercio podrás publicar excedentes y configurar ventanas de recojo.</p>
+                <hr>
+                <h4>Prueba de validación</h4>
+                <p>Borra el texto del campo <b>Dirección</b> para ver cómo se bloquea el formulario automáticamente.</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo con sesión iniciada y en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por
+            mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
+
+    <script src="/js/state.js"></script>
+    <script src="/js/shared.js"></script>
+    <script src="/js/registro-comercio.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="FoodRakyone conecta comercios y consumidores de Lima Metropolitana para rescatar excedentes alimentarios.">
+    <title>FoodRakyone - Mapa</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/descubrir.css">
+</head>
+
+<body data-view="mapa">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+
+        <!-- Menú principal: se muestra solo cuando el usuario inició sesión -->
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;"
+                hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <!-- Mapa -->
+    <main id="app" class="container">
+<p class="crumb">Inicio> Mapa</p><h1>Mapa de excedentes</h1>
+        <p class="subtitle">Comercios con ofertas a 1 km o menos de Av. Canadá 100, La Victoria.</p>
+        <div class="placeholder-graphic mapa">🗺️<br><strong>Mapa de ofertas cercanas</strong></div>
+        <div class="card-grid"><div class="offer-card"><strong>📍 Bodega San Luis</strong>
+            <small>Leche sellada 1 L · 0.4 km · S/4.00</small>
+            <button class="btn-outline" onclick="navigate('producto',{id:2})">Ver oferta</button></div><div class="offer-card"><strong>📍 Frutería El Sol</strong>
+            <small>Bolsa de frutas · 0.8 km · S/6.00</small>
+            <button class="btn-outline" onclick="navigate('producto',{id:3})">Ver oferta</button></div><div class="offer-card"><strong>📍 Bodega San Luis</strong>
+            <small>Pack de pan · 0.4 km · S/10.00</small>
+            <button class="btn-outline" onclick="navigate('producto',{id:1})">Ver oferta</button></div></div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo con sesión iniciada y en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por
+            mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
+
+    <script src="/js/state.js"></script>
+    <script src="/js/shared.js"></script>
+    <script src="/js/mapa.js"></script>
+</body>
+
+</html>

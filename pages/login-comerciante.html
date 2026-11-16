@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="FoodRakyone conecta comercios y consumidores de Lima Metropolitana para rescatar excedentes alimentarios.">
+    <title>FoodRakyone - Iniciar sesión - Comerciante</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/descubrir.css">
+</head>
+
+<body data-view="login-comerciante">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+
+        <!-- Menú principal: se muestra solo cuando el usuario inició sesión -->
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;"
+                hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <!-- Iniciar sesión - Comerciante -->
+    <main id="app" class="container">
+        <h1>Iniciar sesión - Comerciante</h1>
+        <p class="subtitle">Accede con el correo de tu cuenta de consumidor o comercio.</p>
+
+        
+
+        <div class="grid-2">
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>✉️ Correo electrónico</label>
+                    <input type="email" id="login-email" value="local@sanluis.pe" required>
+                </div>
+                <div class="form-group ">
+                    <label>🔒 Contraseña</label>
+                    <input type="password" id="login-pass" value="1234" placeholder="Ingresa 1234" required>
+                    
+                </div>
+                <div class="btn-group">
+                    <!-- El botón ahora es type="submit" y dispara el evento del form de arriba -->
+                    <button type="submit" class="btn">Ingresar</button>
+                    
+                    <button type="button" class="btn btn-outline" onclick="navigate('recuperar')">Olvidé mi contraseña</button>
+                    <button type="button" class="btn btn-outline" onclick="navigate('registro-comercio')">Crear cuenta</button>
+                </div>
+            </form>
+
+            <aside class="aside-box">
+                <p>Rescata alimentos en Lima<br>Encuentra excedentes, reserva y recoge.</p>
+                <hr>
+                <h4>Seguridad de acceso</h4>
+                <p>Tu sesión es privada. Usa una contraseña segura y no la compartas con nadie.</p>
+                <h4>Tip de prueba</h4>
+                <p>Usa cualquier contraseña distinta a <b>1234</b> para ver la pantalla de error de credenciales.</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo con sesión iniciada y en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por
+            mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
+
+    <script src="/js/state.js"></script>
+    <script src="/js/shared.js"></script>
+    <script src="/js/login-comerciante.js"></script>
+</body>
+
+</html>

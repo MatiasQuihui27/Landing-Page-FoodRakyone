@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="FoodRakyone conecta comercios y consumidores de Lima Metropolitana para rescatar excedentes alimentarios.">
+    <title>FoodRakyone - Detalle de oferta</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/descubrir.css">
+</head>
+
+<body data-view="producto">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+
+        <!-- Menú principal: se muestra solo cuando el usuario inició sesión -->
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;"
+                hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <!-- Detalle de oferta -->
+    <main id="app" class="container">
+<p class="crumb">Inicio> Descubrir> Pack de pan</p>
+        <h1>Pack de pan</h1><p class="subtitle">Bodega San Luis · 4.5/5 · aprox. 0.4 km</p>
+        <div class="layout-grid"><div>
+            <div class="offer-img-placeholder" style="height:180px"><span style="font-size:3rem">🍞</span></div>
+            <div class="product-detail-grid">
+                <div class="price-box"><small>Precio original</small><br><s>S/20.00</s></div>
+                <div class="price-box"><small>Descuento</small><br><strong class="verde">-50%</strong></div>
+                <div class="price-box"><small>Precio remate</small><br><strong class="azul">S/10.00</strong></div>
+            </div>
+            <p class="subtitle" style="margin-top:16px">Hoy 07/10 · Recojo 18:00–20:00 · 8 packs disponibles</p>
+        </div><aside class="sidebar-box"><h3 class="azul">Resumen de reserva</h3>
+            <div class="form-group"><label>Cantidad</label>
+                <select id="qty" onchange="document.getElementById('tot').textContent=(this.value*10.00).toFixed(2)">
+                    <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+            <p><b>Total: S/<span id="tot">10.00</span></b></p>
+            <button class="btn-green btn-block" style="margin-top:12px" onclick="reservar(1)">Confirmar reserva</button>
+            <small>Recojo presencial en el local</small>
+        </aside></div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo con sesión iniciada y en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por
+            mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
+
+    <script src="/js/state.js"></script>
+    <script src="/js/shared.js"></script>
+    <script src="/js/producto-1.js"></script>
+</body>
+
+</html>

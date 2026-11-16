@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="FoodRakyone conecta comercios y consumidores de Lima Metropolitana para rescatar excedentes alimentarios.">
+    <title>FoodRakyone - Resultados</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/descubrir.css">
+</head>
+
+<body data-view="resultados">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+
+        <!-- Menú principal: se muestra solo cuando el usuario inició sesión -->
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;"
+                hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <!-- Resultados -->
+    <main id="app" class="container">
+<p class="crumb">Inicio> Descubrir> Resultados</p>
+        <h1>Resultados para "todas las ofertas"</h1>
+        <p class="subtitle">3 ofertas encontradas dentro de 1 km.</p>
+        <div class="layout-grid"><div>
+            <form class="search-box" onsubmit="buscar(event)"><strong>Buscar por producto</strong><input id="q" value="" placeholder="Escribe el nombre del alimento"></form>
+            <label class="orden">Ordenar resultados
+                    <select onchange="state.busqueda.orden=this.value; navigate('resultados')">
+                        <option value="precio" selected>Menor precio</option>
+                        <option value="descuento" >Mayor descuento</option>
+                    </select></label>
+                <h2>Coincidencias de búsqueda</h2><div class="card-grid"><div class="offer-card">
+        <div class="offer-img-placeholder"><span style="font-size:2.5rem">🥛</span><small>Leche sellada 1 L</small></div>
+        <div class="offer-tag">Empaque sellado · <span class="verde">-50%</span></div>
+        <strong>Leche sellada 1 L</strong>
+        <div class="offer-price">S/4.00</div>
+        <div class="offer-details">Bodega San Luis · aprox. 0.4 km<br>Original S/8.00 · 6 unidades disponibles<br>Hoy 07/10 · Recojo 18:00–20:00</div>
+        <button class="btn-green" onclick="navigate('producto',{id:2})">Ver oferta</button>
+    </div><div class="offer-card">
+        <div class="offer-img-placeholder"><span style="font-size:2.5rem">🍎</span><small>Bolsa de frutas</small></div>
+        <div class="offer-tag">Frutas · <span class="verde">-60%</span></div>
+        <strong>Bolsa de frutas</strong>
+        <div class="offer-price">S/6.00</div>
+        <div class="offer-details">Frutería El Sol · aprox. 0.8 km<br>Original S/15.00 · 4 bolsas disponibles<br>Hoy 07/10 · Recojo 18:00–20:00</div>
+        <button class="btn-green" onclick="navigate('producto',{id:3})">Ver oferta</button>
+    </div><div class="offer-card">
+        <div class="offer-img-placeholder"><span style="font-size:2.5rem">🍞</span><small>Pack de pan</small></div>
+        <div class="offer-tag">Última oportunidad · <span class="verde">-50%</span></div>
+        <strong>Pack de pan</strong>
+        <div class="offer-price">S/10.00</div>
+        <div class="offer-details">Bodega San Luis · aprox. 0.4 km<br>Original S/20.00 · 8 packs disponibles<br>Hoy 07/10 · Recojo 18:00–20:00</div>
+        <button class="btn-green" onclick="navigate('producto',{id:1})">Ver oferta</button>
+    </div></div>
+            <div class="acciones">
+                <button class="btn-green" onclick="navigate('descubrir')">Cambiar búsqueda</button>
+                <button class="btn-outline" onclick="navigate('filtros')">Filtros</button>
+                <button class="btn-outline" onclick="navigate('mapa')">Ver en mapa</button>
+            </div>
+        </div><aside><div class="sidebar-box"><h3 class="azul">Tu zona activa</h3><p>📍 Av. Canadá 100, La Victoria</p><small>Radio: 1 km</small></div><div class="sidebar-box"><h3 class="azul">Sugerencias de búsqueda</h3><p>Prueba con "Leche", "Frutas" o "Verduras". Amplía el radio desde Filtros.</p></div></aside></div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo con sesión iniciada y en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por
+            mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
+
+    <script src="/js/state.js"></script>
+    <script src="/js/shared.js"></script>
+    <script src="/js/resultados.js"></script>
+</body>
+
+</html>
