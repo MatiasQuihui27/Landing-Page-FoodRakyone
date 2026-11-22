@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Completa el pago de tu reserva en FoodRakyone.">
+    <title>FoodRakyone - Pagar reserva</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/descubrir.css">
+</head>
+
+<body data-view="pagar-reserva">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;" hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <!-- Pagar reserva -->
+    <main id="app" class="container">
+        <p class="crumb">Inicio&gt; Reservas&gt; Pagar reserva</p>
+        <h1>Pagar reserva</h1>
+        <p class="subtitle">Selecciona el método de pago que deseas utilizar para completar tu reserva.</p>
+
+        <div id="payment-not-found" class="alert" hidden>
+            No encontramos una reserva seleccionada para pagar.
+            Regresa a Mis reservas y selecciona una reserva pendiente.
+            <br><br>
+            <button class="btn" onclick="navigate('reservas')">Volver a mis reservas</button>
+        </div>
+
+        <div class="layout-grid" id="payment-layout">
+
+            <!-- Resumen de reserva -->
+            <section>
+                <h2>Resumen de la reserva</h2>
+
+                <div class="box">
+                    <table width="100%" cellpadding="0" style="border-collapse: collapse;">
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #D1D5DB;">
+                                <td style="padding: 18px 8px;">Producto</td>
+                                <td style="padding: 18px 8px;"><strong id="pago-producto"></strong></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #D1D5DB;">
+                                <td style="padding: 18px 8px;">Cantidad</td>
+                                <td style="padding: 18px 8px;" id="pago-cantidad"></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #D1D5DB;">
+                                <td style="padding: 18px 8px;">Subtotal</td>
+                                <td style="padding: 18px 8px;" id="pago-subtotal"></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #D1D5DB;">
+                                <td style="padding: 18px 8px;"><strong>Total</strong></td>
+                                <td style="padding: 18px 8px;"><strong id="pago-total"></strong></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #D1D5DB;">
+                                <td style="padding: 18px 8px;">Comercio</td>
+                                <td style="padding: 18px 8px;" id="pago-comercio"></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 18px 8px;">Recojo</td>
+                                <td style="padding: 18px 8px;" id="pago-recojo"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Métodos de pago -->
+            <aside class="sidebar-box" style="align-self: start;">
+                <div id="payment-options">
+                    <h3 class="azul">Método de pago</h3>
+                    <form id="form-pago">
+                        <div class="cat-list">
+                            <label class="check-item">
+                                <input type="radio" name="metodoPago" value="tarjeta" checked>
+                                <span><strong>Tarjeta actual</strong><br><small>**** **** **** 1234</small></span>
+                            </label>
+                            <label class="check-item">
+                                <input type="radio" name="metodoPago" value="billetera">
+                                <span><strong>Billetera digital</strong><br><small>912 *** 678</small></span>
+                            </label>
+                            <label class="check-item">
+                                <input type="radio" name="metodoPago" value="otra-tarjeta">
+                                <span><strong>Otra tarjeta</strong><br><small>Utilizar una tarjeta diferente</small></span>
+                            </label>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn-green btn-block" id="btn-pagar">Pagar ahora</button>
+                        <button type="button" class="btn-outline btn-block" onclick="gestionarMetodosPago()">Gestionar métodos</button>
+                        <button type="button" class="btn-outline btn-block" onclick="navigate('reservas')">Volver</button>
+                    </form>
+                </div>
+
+                <!-- Confirmación -->
+                <div id="payment-result" hidden>
+                    <h3 class="azul">Pago confirmado</h3>
+                    <div class="alert success">
+                        El pago se realizó correctamente.
+                        Tu reserva está lista para recoger.
+                    </div>
+                    <!-- QR ilustrativo -->
+                    <div class="box" style="text-align: center;">
+                        <svg viewBox="0 0 120 120" width="128" height="128" role="img" aria-label="QR ilustrativo no escaneable">
+                            <rect width="120" height="120" rx="6" fill="#F1F5F9"/>
+                            <path fill="#2563EB" d="M14 14h6v6h-6z M21 14h6v6h-6z M35 14h6v6h-6z M42 14h6v6h-6z M63 14h6v6h-6z M77 14h6v6h-6z M84 14h6v6h-6z M98 14h6v6h-6z M21 21h6v6h-6z M28 21h6v6h-6z M35 21h6v6h-6z M42 21h6v6h-6z M56 21h6v6h-6z M70 21h6v6h-6z M98 21h6v6h-6z M14 28h6v6h-6z M28 28h6v6h-6z M49 28h6v6h-6z M56 28h6v6h-6z M14 35h6v6h-6z M35 35h6v6h-6z M42 35h6v6h-6z M63 35h6v6h-6z M91 35h6v6h-6z M98 35h6v6h-6z M14 42h6v6h-6z M28 42h6v6h-6z M35 42h6v6h-6z M63 42h6v6h-6z M70 42h6v6h-6z M84 42h6v6h-6z M91 42h6v6h-6z M21 49h6v6h-6z M28 49h6v6h-6z M42 49h6v6h-6z M70 49h6v6h-6z M91 49h6v6h-6z M14 56h6v6h-6z M21 56h6v6h-6z M28 56h6v6h-6z M42 56h6v6h-6z M91 56h6v6h-6z M98 56h6v6h-6z M14 63h6v6h-6z M21 63h6v6h-6z M28 63h6v6h-6z M35 63h6v6h-6z M70 63h6v6h-6z M77 63h6v6h-6z M84 63h6v6h-6z M91 63h6v6h-6z M14 70h6v6h-6z M56 70h6v6h-6z M70 70h6v6h-6z M84 70h6v6h-6z M14 77h6v6h-6z M21 77h6v6h-6z M35 77h6v6h-6z M49 77h6v6h-6z M56 77h6v6h-6z M63 77h6v6h-6z M84 77h6v6h-6z M91 77h6v6h-6z M98 77h6v6h-6z M14 84h6v6h-6z M28 84h6v6h-6z M42 84h6v6h-6z M49 84h6v6h-6z M56 84h6v6h-6z M63 84h6v6h-6z M91 84h6v6h-6z M98 84h6v6h-6z M14 91h6v6h-6z M42 91h6v6h-6z M49 91h6v6h-6z M56 91h6v6h-6z M63 91h6v6h-6z M77 91h6v6h-6z M84 91h6v6h-6z M14 98h6v6h-6z M21 98h6v6h-6z M35 98h6v6h-6z M49 98h6v6h-6z M56 98h6v6h-6z M63 98h6v6h-6z M77 98h6v6h-6z M98 98h6v6h-6z"/>
+                            <rect x="46" y="46" width="28" height="28" rx="4" fill="#FFFFFF"/>
+                            <text x="60" y="64" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563EB">FR</text>
+                        </svg>                        
+                    </div>
+                    <p>Código de recojo:</p>
+                    <div class="codigo">
+                        <strong id="payment-code"></strong>
+                    </div>
+                    <br>
+                    <button class="btn-green btn-block" onclick="navigate('reservas')">Ver mis reservas</button>
+                    <button class="btn-outline btn-block" onclick="navigate('como-llegar')">Cómo llegar</button>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo con sesión iniciada y en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por
+            mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/pagar-reserva.js"></script>
+</body>
+</html>

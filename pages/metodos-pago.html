@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gestiona tus tarjetas y billeteras digitales en FoodRakyone.">
+    <title>FoodRakyone - Métodos de pago</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/descubrir.css">
+</head>
+
+<body data-view="metodos-pago">
+    <a class="skip" href="#app">Saltar al contenido</a>
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;" hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <main id="app" class="container">
+
+        <!-- MÉTODOS GUARDADOS -->
+        <section id="vista-metodos">
+            <p class="crumb">Inicio &gt; Perfil &gt; Métodos de pago</p>
+            <h1>Métodos de pago</h1>
+            <p class="subtitle">Agrega, consulta o elimina tus tarjetas y billeteras.</p>
+            <div class="grid-2">
+                <section>
+                    <h2>Métodos guardados</h2>
+                    <div id="mensaje-metodo-agregado" class="alert success" hidden>El método de pago se agregó correctamente.</div>
+                    <div id="lista-metodos"></div>
+                    <button type="button" class="btn btn-block" onclick="mostrarVista('agregar-metodo')">Agregar método de pago</button>
+                    <button type="button" class="btn btn-outline btn-block" onclick="navigate('perfil')">Volver al perfil</button>
+                </section>
+
+                <aside class="aside-box">
+                    <h3 class="azul">Información sobre tus métodos</h3>
+                    <p>Tus tarjetas y billeteras guardadas estarán disponibles cuando realices una reserva.</p><hr>
+                    <strong>Selección de pago</strong>
+                    <p>Puedes elegir el método que prefieras al momento de pagar tu reserva.</p><hr>
+                    <strong>Eliminación de métodos</strong>
+                    <p>Puedes eliminar cualquier método que ya no quieras utilizar. Las reservas pagadas no se verán afectadas.</p>
+                </aside>
+            </div>
+        </section>
+
+        <!-- CONFIRMAR ELIMINACIÓN -->
+        <section id="vista-confirmar-eliminacion" hidden>
+            <p class="crumb">Inicio &gt; Perfil &gt; Métodos de pago</p>
+            <h1>¿Eliminar este método?</h1>
+            <p class="subtitle">Confirmación antes de eliminar.</p>
+            <h2>Método seleccionado</h2>
+
+            <div class="box">
+                <strong id="metodo-eliminar-nombre"></strong><br>
+                <span id="metodo-eliminar-detalle"></span>
+            </div>
+            <div class="alert">
+                <strong>ⓘ Información</strong><br>
+                Ya no se ofrecerá este método en próximos pagos.<br>
+                Las reservas ya pagadas no cambian.
+            </div>
+            <button type="button" class="btn btn-block" id="btn-mantener-metodo" onclick="mantenerMetodo()">Mantener método</button>
+            <button type="button" class="btn btn-outline btn-block" onclick="confirmarEliminacionMetodo()">Confirmar eliminación</button>
+        </section>
+
+        <!-- ELIMINACIÓN CONFIRMADA -->
+        <section id="vista-eliminacion-confirmada" hidden>
+            <p class="crumb">Inicio &gt; Perfil &gt; Métodos de pago</p>
+            <h1>Métodos de pago</h1>
+            <p class="subtitle">Eliminación confirmada.</p>
+            <div class="alert success">
+                <strong>✓ Operación confirmada</strong><br>
+                <span id="mensaje-eliminacion-metodo"></span><br>
+                Ya no se ofrecerá este método en próximos pagos. Las reservas ya pagadas no cambian.
+            </div>
+
+            <button type="button" class="btn btn-block" onclick="mostrarVista('metodos')">Volver a Métodos de pago</button>
+            <button type="button" class="btn btn-outline btn-block" onclick="navigate('perfil')">Volver al perfil</button>
+        </section>
+
+        <!-- AGREGAR MÉTODO -->
+        <section id="vista-agregar-metodo" hidden>
+            <p class="crumb">Inicio &gt; Perfil &gt; Métodos de pago</p>
+            <h1>Agregar método de pago</h1>
+            <p class="subtitle">Registra una tarjeta o billetera digital.</p>
+
+            <div class="grid-2">
+                <section>
+                    <div class="box">
+                        <form id="form-agregar-metodo">
+                            <div class="form-group">
+                                <label for="nuevo-metodo-tipo">Tipo de método *</label>
+                                <select id="nuevo-metodo-tipo" required>
+                                    <option value="tarjeta">Tarjeta</option>
+                                    <option value="billetera">Billetera digital</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label id="nuevo-metodo-label" for="nuevo-metodo-dato">Número de tarjeta *</label>
+                                <input type="text" id="nuevo-metodo-dato" inputmode="numeric" placeholder="Ingresa los 16 dígitos" maxlength="19" required>
+                            </div>
+                            <button type="submit" class="btn btn-block">Guardar método</button>
+                            <button type="button" class="btn btn-outline btn-block" onclick="mostrarVista('metodos')">Cancelar</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo con sesión iniciada y en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/metodos-pago.js"></script>
+</body>
+</html>
