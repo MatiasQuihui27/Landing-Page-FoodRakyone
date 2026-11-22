@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Confirma la cancelación de una reserva en FoodRakyone.">
+    <title>FoodRakyone - Cancelar reserva</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/descubrir.css">
+</head>
+
+<body data-view="cancelar-reserva">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;" hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <!-- Cancelar reserva -->
+    <main id="app" class="container">
+
+        <!-- Confirmación de cancelación -->
+        <section id="pantalla-confirmar-cancelacion">
+            <h1>¿Cancelar esta reserva?</h1>
+            <div class="layout-grid">
+                <!-- PRIMERA COLUMNA: RESUMEN Y BOTONES -->
+                <section>
+                    <h2>Resumen de la reserva</h2>
+                    <div class="box">
+                        <table width="100%" cellpadding="0" style="border-collapse: collapse;">
+                            <tbody>
+                                <tr style="border-bottom: 1px solid #D1D5DB;">
+                                    <td style="padding: 18px 8px;">Producto</td>
+                                    <td style="padding: 18px 8px;"><strong id="cancelacion-producto"></strong></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #D1D5DB;">
+                                    <td style="padding: 18px 8px;">Cantidad</td>
+                                    <td style="padding: 18px 8px;" id="cancelacion-cantidad"></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #D1D5DB;">
+                                    <td style="padding: 18px 8px;">Subtotal</td>
+                                    <td style="padding: 18px 8px;" id="cancelacion-subtotal"></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #D1D5DB;">
+                                    <td style="padding: 18px 8px;"><strong>Total</strong></td>
+                                    <td style="padding: 18px 8px;"><strong id="cancelacion-total"></strong></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #D1D5DB;">
+                                    <td style="padding: 18px 8px;">Comercio</td>
+                                    <td style="padding: 18px 8px;" id="cancelacion-comercio"></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 18px 8px;">Recojo</td>
+                                    <td style="padding: 18px 8px;" id="cancelacion-recojo"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <div class="form-grid">
+                        <button type="button" class="btn-green" onclick="mantenerReserva()">Mantener reserva
+                        </button>
+                        <button type="button" class="btn-outline" onclick="confirmarCancelacion()">Confirmar cancelación
+                        </button>
+                    </div>
+                </section>
+
+                <!-- INFORMACIÓN -->
+                <aside>
+                    <div class="aside-box">
+                        <h3 class="azul">ⓘ Información</h3>
+                        <p>Si cancelas, esta reserva dejará de estar vigente y ya no aparecerá entre tus reservas activas.</p>
+                        <p>Cancelar no confirma un reembolso automático. La solicitud de reembolso por reserva fallida tiene un proceso separado.</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Confirmación de cancelación realizada -->
+        <section id="pantalla-cancelacion-confirmada" hidden>
+            <h1>Reserva cancelada</h1>
+            <div class="alert success" role="status">
+                <strong>✓ Operación confirmada</strong><br>
+                La reserva se canceló correctamente.
+            </div>
+
+            <h2>Estado del pago</h2>
+            <p id="cancelacion-estado-pago"></p>
+            <div class="form-grid">
+                <button type="button" class="btn-green" onclick="navigate('descubrir')">
+                    Volver a Descubrir
+                </button>
+                <button type="button" class="btn-outline" onclick="navigate('reservas')">
+                    Ver mis reservas
+                </button>
+            </div>
+        </section>
+
+        <!-- Reserva no encontrada -->
+        <div id="cancelacion-sin-reserva" class="alert" hidden>
+            No encontramos la reserva que deseas cancelar.
+            Regresa a Mis reservas y selecciona una reserva vigente.
+            <br><br><button type="button" class="btn" onclick="navigate('reservas')">Volver a mis reservas</button>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+      <!-- Barra inferior para Mobile (visible solo con sesión iniciada y en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/cancelar-reserva.js"></script>
+</body>
+</html>
