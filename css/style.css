@@ -418,6 +418,363 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     padding: 15px; 
     margin-bottom: 20px;
 }
+
+/* Panel visual del inicio del comercio */
+.merchant-page {
+    background: #fff;
+    color: #334155;
+}
+
+.merchant-page .skip {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+.merchant-page .skip:focus {
+    z-index: 10;
+    width: auto;
+    height: auto;
+    clip: auto;
+    padding: 8px 12px;
+    background: #fff;
+}
+
+.merchant-page #main-header {
+    min-height: 94px;
+    padding: 20px 49px 18px;
+    border-bottom: 1px solid #2f86ef;
+    box-shadow: none;
+}
+
+.merchant-page .merchant-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #2463b8;
+    font-size: 1.65rem;
+    font-weight: 700;
+}
+
+.merchant-page .merchant-logo .logo-mark {
+    display: grid;
+    width: 45px;
+    height: 45px;
+    place-items: center;
+    border-radius: 9px;
+    background: #2468bf;
+    color: #fff;
+    font-size: 1.65rem;
+    line-height: 1;
+}
+
+.merchant-page .merchant-nav {
+    display: flex;
+    gap: 24px;
+}
+
+.merchant-page .merchant-nav a,
+.merchant-page .merchant-account a {
+    color: #1258af;
+    font-size: .9rem;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.merchant-page .merchant-account {
+    display: flex;
+    gap: 8px;
+}
+
+.merchant-page .merchant-dashboard {
+    width: calc(100% - 100px);
+    max-width: 1502px;
+    margin: 0 auto;
+    padding: 35px 0 30px;
+}
+
+.merchant-page .dashboard-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 26px;
+}
+
+.merchant-page .dashboard-heading h1 {
+    margin-bottom: 3px;
+    color: #2463b8;
+    font-size: 2.15rem;
+}
+
+.merchant-page .dashboard-heading p,
+.merchant-page .delivery-card p,
+.merchant-page .management-card p {
+    font-size: 1.05rem;
+}
+
+.merchant-page .heading-status {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.merchant-page .date-chip,
+.merchant-page .active-chip {
+    padding: 8px 15px;
+    border-radius: 7px;
+    font-size: .85rem;
+}
+
+.merchant-page .date-chip {
+    border: 1px solid #2f86ef;
+    background: #f8fbff;
+}
+
+.merchant-page .active-chip {
+    padding-right: 20px;
+    padding-left: 20px;
+    background: #86c443;
+    color: #173c1c;
+    font-weight: 600;
+}
+
+.merchant-page .dashboard-columns {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(390px, 1fr);
+    gap: 30px;
+}
+
+.merchant-page .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.merchant-page .metric-card,
+.merchant-page .delivery-card,
+.merchant-page .management-card {
+    border: 1px solid #2f86ef;
+    border-radius: 7px;
+    background: #fff;
+}
+
+.merchant-page .metric-card {
+    min-height: 134px;
+    padding: 20px;
+    background: #f1f5f9;
+}
+
+.merchant-page .metric-card p {
+    margin-bottom: 8px;
+    font-size: .85rem;
+}
+
+.merchant-page .metric-card strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #334155;
+    font-size: 1.65rem;
+}
+
+.merchant-page .metric-card small {
+    font-size: .8rem;
+}
+
+.merchant-page .action-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 25px 0 26px;
+}
+
+.merchant-page .action-grid button,
+.merchant-page .delivery-actions button {
+    min-height: 59px;
+    border: 1px solid #1464c1;
+    border-radius: 7px;
+    background: #fff;
+    color: #0758b3;
+    font: 600 1rem 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
+}
+
+.merchant-page .action-grid button:first-child,
+.merchant-page .delivery-actions button:first-child {
+    border-color: #86c443;
+    background: #86c443;
+    color: #173c1c;
+}
+
+.merchant-page .section-title {
+    margin-bottom: 12px;
+    color: #1762be;
+    font-size: 1.35rem;
+}
+
+.merchant-page .delivery-card {
+    padding: 18px;
+}
+
+.merchant-page .delivery-card p {
+    margin-bottom: 2px;
+}
+
+.merchant-page .delivery-card .delivery-name {
+    font-weight: 700;
+}
+
+.merchant-page .delivery-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 13px;
+}
+
+.merchant-page .management-card {
+    padding: 20px;
+    background: #f8fafc;
+}
+
+.merchant-page .management-card h2 {
+    margin-bottom: 13px;
+    color: #1762be;
+    font-size: 1.35rem;
+}
+
+.merchant-page .management-card p {
+    margin-bottom: 2px;
+}
+
+.merchant-page .management-card hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #2f86ef;
+}
+
+.merchant-page .management-card h3 {
+    margin-bottom: 8px;
+    color: #1762be;
+    font-size: 1rem;
+}
+
+.merchant-page .summary-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+}
+
+.merchant-page .summary-icon {
+    display: grid;
+    width: 25px;
+    height: 25px;
+    flex: 0 0 25px;
+    place-items: center;
+    border-radius: 50%;
+    background: #2468bf;
+    color: #fff;
+    font-weight: 700;
+    font-size: .78rem;
+}
+
+.merchant-page .address-card {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 7px;
+    background: #fff;
+}
+
+.merchant-page .address-card strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #1762be;
+}
+
+@media (min-width: 901px) and (max-width: 1250px) {
+    .merchant-page #main-header {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .merchant-page .merchant-logo {
+        gap: 8px;
+        font-size: 1.35rem;
+    }
+
+    .merchant-page .merchant-logo .logo-mark {
+        width: 40px;
+        height: 40px;
+        font-size: 1.35rem;
+    }
+
+    .merchant-page .dashboard-columns {
+        grid-template-columns: minmax(0, 1.55fr) minmax(330px, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 900px) {
+    .merchant-page #main-header {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .merchant-page .merchant-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 24px;
+    }
+
+    .merchant-page .merchant-account {
+        margin-left: auto;
+    }
+
+    .merchant-page .merchant-dashboard {
+        width: calc(100% - 40px);
+        padding: 25px 20px;
+    }
+
+    .merchant-page .dashboard-columns {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .merchant-page #main-header {
+        padding: 16px 20px;
+    }
+
+    .merchant-page .merchant-logo {
+        font-size: 1.3rem;
+    }
+
+    .merchant-page .merchant-nav {
+        flex-wrap: wrap;
+        gap: 5px 12px;
+    }
+
+    .merchant-page .dashboard-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .merchant-page .heading-status,
+    .merchant-page .metrics,
+    .merchant-page .action-grid {
+        width: 100%;
+    }
+
+    .merchant-page .metrics,
+    .merchant-page .action-grid {
+        grid-template-columns: 1fr;
+    }
+}
 .search-box input {
     border: none; 
     outline: none; 

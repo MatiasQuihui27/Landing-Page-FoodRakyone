@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Panel de gestión de FoodRakyone para comercios que rescatan excedentes alimentarios.">
+    <title>FoodRakyone - Inicio del comercio</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="merchant-page" data-view="f5-inicio-comercio">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="return false;">
+            <span class="logo-mark" aria-hidden="true">🛒</span>
+            <span>FoodRakyone</span>
+        </a>
+
+        <nav class="nav-links menu merchant-nav" aria-label="Principal">
+            <a href="#">[Inicio]</a>
+            <a href="#" onclick="navigate('descubrir'); return false;">Ofertas</a>
+            <a href="#" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" onclick="navigate('al-por-mayor'); return false;">Minoristas</a>
+            <a href="#" onclick="navigate('datos-local'); return false;">Configuración</a>
+        </nav>
+
+        <div class="nav-links right-links merchant-account">
+            <a href="#" onclick="alert('Sin notificaciones nuevas'); return false;">Notificaciones</a>
+            <span>·</span>
+            <a href="#" onclick="logout(); return false;">Cuenta</a>
+        </div>
+    </header>
+
+    <main id="app" class="merchant-dashboard">
+        <div class="dashboard-heading">
+            <div>
+                <h1>Inicio del comercio</h1>
+                <p>Bodega San Luis · Octubre 2026 · Mes actual</p>
+            </div>
+            <div class="heading-status">
+                <span class="date-chip">07/10/2026 · 18:00–20:00</span>
+                <span class="active-chip">Local activo</span>
+            </div>
+        </div>
+
+        <div class="dashboard-columns">
+            <section aria-label="Resumen del comercio">
+                <div class="metrics">
+                    <article class="metric-card">
+                        <p>Capital recuperado · Octubre</p>
+                        <strong>S/60.00</strong>
+                        <small>Sólo ventas entregadas</small>
+                    </article>
+                    <article class="metric-card">
+                        <p>Unidades rescatadas · Octubre</p>
+                        <strong>6</strong>
+                        <small>Sólo recojos confirmados</small>
+                    </article>
+                    <article class="metric-card">
+                        <p>Pendientes del día</p>
+                        <strong>2</strong>
+                        <small>07/10/2026 · límite 20:00</small>
+                    </article>
+                </div>
+
+                <div class="action-grid">
+                    <button type="button" onclick="alert('Formulario para publicar excedente')">Publicar excedente</button>
+                    <button type="button" onclick="navigate('reservas')">Reservas de hoy</button>
+                    <button type="button" onclick="alert('Inventario del comercio')">Ver inventario</button>
+                </div>
+
+                <h2 class="section-title">Próxima entrega</h2>
+                <article class="delivery-card">
+                    <p class="delivery-name">R-1042 · Pagada · Pendiente</p>
+                    <p><strong>Pack de pan × 2</strong></p>
+                    <p>Ana Torres · Límite hoy 20:00</p>
+                    <p>Ventana: 18:00–20:00 · Total S/20.00</p>
+                    <div class="delivery-actions">
+                        <button type="button" onclick="alert('Detalle de la reserva R-1042')">Ver detalle</button>
+                        <button type="button" onclick="alert('Validación de código')">Validar código</button>
+                    </div>
+                </article>
+            </section>
+
+            <aside class="management-card">
+                <h2>Gestión del local</h2>
+                <p>Bodega San Luis</p>
+                <p>Horario: 18:00–20:00</p>
+                <p>Categorías: Panadería y Lácteos</p>
+
+                <hr>
+
+                <h3>Resumen del mes</h3>
+                <div class="summary-row"><span class="summary-icon">S</span><span>Capital: S/60.00 (sólo entregas confirmadas)</span></div>
+                <div class="summary-row"><span class="summary-icon">U</span><span>6 unidades rescatadas este mes</span></div>
+                <div class="summary-row"><span class="summary-icon">P</span><span>2 entregas pendientes hoy</span></div>
+
+                <hr>
+
+                <div class="address-card">
+                    <strong>Av. Canadá 120, La Victoria</strong>
+                    <span>Ventana de recojo: 18:00–20:00 hoy</span>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+</body>
+
+</html>
