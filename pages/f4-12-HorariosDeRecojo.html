@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Panel de gestión de FoodRakyone para comercios que rescatan excedentes alimentarios.">
+    <title>FoodRakyone - Horarios de recojo</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/descubrir.css">
+</head>
+
+<body class="merchant-page" data-view="f4-horarios">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('f5-01-InicioDelComercio'); return false;">
+            <span class="logo-mark" aria-hidden="true">🛒</span>
+            <span>FoodRakyone</span>
+        </a>
+
+        <nav class="nav-links menu merchant-nav" aria-label="Principal">
+            <a href="#" onclick="navigate('f5-01-InicioDelComercio'); return false;">Inicio</a>
+            <a href="#" onclick="navigate('f4-01-InventarioDeOfertas'); return false;">Ofertas</a>
+            <a href="#" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" onclick="navigate('al-por-mayor'); return false;">Minoristas</a>
+            <a href="#" onclick="navigate('datos-local'); return false;">[Configuración]</a>
+        </nav>
+
+        <div class="nav-links right-links merchant-account">
+            <a href="#" onclick="alert('Sin notificaciones nuevas'); return false;">Notificaciones</a>
+            <span>·</span>
+            <a href="#" onclick="logout(); return false;">Cuenta</a>
+        </div>
+    </header>
+
+    <!-- Horarios de recojo -->
+    <main id="app" class="container">
+        <h1>Horarios de recojo</h1>
+        <p class="subtitle">Define una ventana exacta para cada día de la semana.</p>
+
+        <div class="grid-2">
+            <form onsubmit="handleGuardarHorarios(event)" novalidate>
+                <div class="form-grid">
+                    <div class="form-group"><label for="hor-ini-0">Lunes · Hora inicio</label><select id="hor-ini-0"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option selected>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option></select></div><div class="form-group"><label for="hor-fin-0">Lunes · Hora fin</label><select id="hor-fin-0"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option selected>20:00</option><option>21:00</option><option>22:00</option></select></div><div class="form-group"><label for="hor-ini-1">Martes · Hora inicio</label><select id="hor-ini-1"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option selected>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option></select></div><div class="form-group"><label for="hor-fin-1">Martes · Hora fin</label><select id="hor-fin-1"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option selected>20:00</option><option>21:00</option><option>22:00</option></select></div><div class="form-group"><label for="hor-ini-2">Miércoles · Hora inicio</label><select id="hor-ini-2"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option selected>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option></select></div><div class="form-group"><label for="hor-fin-2">Miércoles · Hora fin</label><select id="hor-fin-2"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option selected>20:00</option><option>21:00</option><option>22:00</option></select></div><div class="form-group"><label for="hor-ini-3">Jueves · Hora inicio</label><select id="hor-ini-3"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option selected>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option></select></div><div class="form-group"><label for="hor-fin-3">Jueves · Hora fin</label><select id="hor-fin-3"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option selected>20:00</option><option>21:00</option><option>22:00</option></select></div><div class="form-group"><label for="hor-ini-4">Viernes · Hora inicio</label><select id="hor-ini-4"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option selected>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option></select></div><div class="form-group"><label for="hor-fin-4">Viernes · Hora fin</label><select id="hor-fin-4"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option selected>20:00</option><option>21:00</option><option>22:00</option></select></div><div class="form-group"><label for="hor-ini-5">Sábado · Hora inicio</label><select id="hor-ini-5"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option selected>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option></select></div><div class="form-group"><label for="hor-fin-5">Sábado · Hora fin</label><select id="hor-fin-5"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option selected>20:00</option><option>21:00</option><option>22:00</option></select></div><div class="form-group"><label for="hor-ini-6">Domingo · Hora inicio</label><select id="hor-ini-6"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option selected>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option></select></div><div class="form-group"><label for="hor-fin-6">Domingo · Hora fin</label><select id="hor-fin-6"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option selected>20:00</option><option>21:00</option><option>22:00</option></select></div>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn">Guardar horarios</button>
+                    <button type="button" class="btn btn-outline" onclick="cancelarHorarios()">Cancelar</button>
+                </div>
+            </form>
+
+            <aside class="aside-box">
+                <h3 class="azul">Visibilidad y validación</h3>
+                <p>Los selectores de hora definen inicio y fin. La ventana se muestra antes de reservar. No se permiten recojos fuera del rango.</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil">
+        <a href="#" onclick="navigate('f5-01-InicioDelComercio'); return false;"><span>🏠</span>Inicio</a>
+        <a href="#" onclick="navigate('f5-07-validarCodigoDeRecojo'); return false;"><span>🧾</span>Entregas</a>
+        <a href="#" onclick="navigate('f4-02-PublicarExcedente'); return false;"><span>➕</span>Publicar</a>
+        <a href="#" onclick="navigate('f4-01-InventarioDeOfertas'); return false;"><span>📦</span>Inventario</a>
+        <a href="#" onclick="navigate('datos-local'); return false;"><span>⋯</span>Más</a>
+    </nav>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/f4-comun.js"></script>
+    <script src="../js/f4-12-HorariosDeRecojo.js"></script>
+</body>
+
+</html>

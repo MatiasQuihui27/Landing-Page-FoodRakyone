@@ -37,6 +37,17 @@ state.ofertas.forEach(o => { o.cat = ['Panadería', 'Lácteos', 'Frutas'][o.id -
 state.busqueda = { q: '', cats: [], orden: 'precio', radio: 1 };
 state.reservas = [];
 
+// Flujo 4 — inventario del comercio (fuente de verdad del lado comerciante).
+// Las ofertas ACTIVAS se reflejan en state.ofertas, que es lo que ve el consumidor (ver js/f4-comun.js).
+state.inventario = [
+    { id: 1, canal: 'B2C', estado: 'activa', name: 'Pack de pan', cat: 'Panadería', price: '10.00', originalPrice: '20.00', stock: 8, unit: 'packs', fecha: '07/10', ini: '18:00', fin: '20:00', caducidad: '09/10', empaque: 'Empaque original sellado' },
+    { id: 2, canal: 'B2C', estado: 'activa', name: 'Leche sellada 1 L', cat: 'Lácteos', price: '4.00', originalPrice: '8.00', stock: 6, unit: 'unidades', fecha: '07/10', ini: '18:00', fin: '20:00', caducidad: '10/10', empaque: 'Empaque original sellado' }
+];
+state.lotes = [];
+state.ofertaSel = null;
+state.borrador = null;
+state.horarios = Object.fromEntries(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'].map(d => [d, { ini: '18:00', fin: '20:00' }]));
+
 try {
     const guardado = JSON.parse(sessionStorage.getItem('foodrakyone-state') || 'null');
     if (guardado) Object.assign(state, guardado);

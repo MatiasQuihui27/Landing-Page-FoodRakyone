@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Panel de gestión de FoodRakyone para comercios que rescatan excedentes alimentarios.">
+    <title>FoodRakyone - Inventario de ofertas</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/descubrir.css">
+</head>
+
+<body class="merchant-page" data-view="f4-inventario">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('f5-01-InicioDelComercio'); return false;">
+            <span class="logo-mark" aria-hidden="true">🛒</span>
+            <span>FoodRakyone</span>
+        </a>
+
+        <nav class="nav-links menu merchant-nav" aria-label="Principal">
+            <a href="#" onclick="navigate('f5-01-InicioDelComercio'); return false;">Inicio</a>
+            <a href="#" onclick="navigate('f4-01-InventarioDeOfertas'); return false;">[Ofertas]</a>
+            <a href="#" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" onclick="navigate('al-por-mayor'); return false;">Minoristas</a>
+            <a href="#" onclick="navigate('datos-local'); return false;">Configuración</a>
+        </nav>
+
+        <div class="nav-links right-links merchant-account">
+            <a href="#" onclick="alert('Sin notificaciones nuevas'); return false;">Notificaciones</a>
+            <span>·</span>
+            <a href="#" onclick="logout(); return false;">Cuenta</a>
+        </div>
+    </header>
+
+    <!-- Inventario de ofertas -->
+    <main id="app" class="container">
+        <h1>Inventario de ofertas</h1>
+        <p class="subtitle">Bodega San Luis · Publicaciones activas.</p>
+
+        <div class="grid-2">
+            <div>
+                <div class="btn-grid-3">
+                    <button type="button" class="btn" onclick="navigate('f4-02-PublicarExcedente')">Publicar excedente</button>
+                    <button type="button" class="btn btn-outline" onclick="publicarLote()">Publicar lote</button>
+                    <button type="button" class="btn btn-outline" onclick="navigate('f4-12-HorariosDeRecojo')">Configuración</button>
+                </div>
+
+                <h2>Ofertas activas</h2>
+                <div class="history-list"><article class="history-card">
+        <p><strong>Activa · B2C</strong></p>
+        <p><strong>Pack de pan</strong></p>
+        <p><strong>S/10.00 por pack</strong></p>
+        <p>Stock: 8 packs</p>
+        <p>Recojo: 07/10 · 18:00–20:00</p>
+        <p>Caducidad: 09/10 · Empaque sellado</p>
+        <div class="offer-actions">
+            <button type="button" class="btn" onclick="irA('f4-07-EditarOfertaActiva', 1)">Editar</button>
+            <button type="button" class="btn btn-outline" onclick="irA('f4-08-ConfirmarAgotado', 1)">Marcar como agotado</button>
+            <button type="button" class="btn btn-outline" onclick="irA('f4-10-ConfirmarRetiro', 1)">Retirar</button>
+        </div>
+    </article><article class="history-card">
+        <p><strong>Activa · B2C</strong></p>
+        <p><strong>Leche sellada 1 L</strong></p>
+        <p><strong>S/4.00 por unidad</strong></p>
+        <p>Stock: 6 unidades</p>
+        <p>Recojo: 07/10 · 18:00–20:00</p>
+        <p>Caducidad: 10/10 · Empaque sellado</p>
+        <div class="offer-actions">
+            <button type="button" class="btn" onclick="irA('f4-07-EditarOfertaActiva', 2)">Editar</button>
+            <button type="button" class="btn btn-outline" onclick="irA('f4-08-ConfirmarAgotado', 2)">Marcar como agotado</button>
+            <button type="button" class="btn btn-outline" onclick="irA('f4-10-ConfirmarRetiro', 2)">Retirar</button>
+        </div>
+    </article></div>
+                
+            </div>
+
+            <aside class="aside-box">
+                <h3 class="azul">Disponibilidad</h3>
+                <p>Los cambios se reflejan en lista y mapa del consumidor.<br>Agotar bloquea nuevas compras.<br>Retirar elimina la publicación del catálogo.</p>
+                <div class="stat-card">
+                    <h3 class="azul">Leyenda de estados</h3>
+                    <div class="summary-row"><span class="summary-icon">✓</span><span>Activa: disponible en su catálogo correspondiente.</span></div>
+                    <div class="summary-row"><span class="summary-icon">−</span><span>Agotada: no admite nuevas reservas.</span></div>
+                    <div class="summary-row"><span class="summary-icon">×</span><span>Retirado: elimina la publicación del catálogo.</span></div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil">
+        <a href="#" onclick="navigate('f5-01-InicioDelComercio'); return false;"><span>🏠</span>Inicio</a>
+        <a href="#" onclick="navigate('f5-07-validarCodigoDeRecojo'); return false;"><span>🧾</span>Entregas</a>
+        <a href="#" onclick="navigate('f4-02-PublicarExcedente'); return false;"><span>➕</span>Publicar</a>
+        <a href="#" onclick="navigate('f4-01-InventarioDeOfertas'); return false;"><span>📦</span>Inventario</a>
+        <a href="#" onclick="navigate('datos-local'); return false;"><span>⋯</span>Más</a>
+    </nav>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/f4-comun.js"></script>
+    <script src="../js/f4-01-InventarioDeOfertas.js"></script>
+</body>
+
+</html>

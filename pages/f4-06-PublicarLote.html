@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Panel de gestión de FoodRakyone para comercios que rescatan excedentes alimentarios.">
+    <title>FoodRakyone - Publicar lote por volumen</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/descubrir.css">
+</head>
+
+<body class="merchant-page" data-view="f4-publicar-lote">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('f5-01-InicioDelComercio'); return false;">
+            <span class="logo-mark" aria-hidden="true">🛒</span>
+            <span>FoodRakyone</span>
+        </a>
+
+        <nav class="nav-links menu merchant-nav" aria-label="Principal">
+            <a href="#" onclick="navigate('f5-01-InicioDelComercio'); return false;">Inicio</a>
+            <a href="#" onclick="navigate('f4-01-InventarioDeOfertas'); return false;">Ofertas</a>
+            <a href="#" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" onclick="navigate('al-por-mayor'); return false;">[Minoristas]</a>
+            <a href="#" onclick="navigate('datos-local'); return false;">Configuración</a>
+        </nav>
+
+        <div class="nav-links right-links merchant-account">
+            <a href="#" onclick="alert('Sin notificaciones nuevas'); return false;">Notificaciones</a>
+            <span>·</span>
+            <a href="#" onclick="logout(); return false;">Cuenta</a>
+        </div>
+    </header>
+
+    <!-- Publicar lote por volumen -->
+    <main id="app" class="container">
+        <h1>Publicar lote por volumen</h1>
+        <p class="subtitle">Puesto Verde · Mercado Santa Anita · Canal B2B habilitado.</p>
+
+        <div class="grid-2">
+            <form onsubmit="handlePublicarLote(event)" oninput="actualizarTotalLote()" novalidate>
+                <div class="form-grid">
+                    <div class="form-group"><label for="lt-nombre">Producto *</label><input type="text" id="lt-nombre" value="Tomate por volumen" placeholder=""></div>
+                    <div class="form-group"><label for="lt-categoria">Categoría *</label><select id="lt-categoria"><option>Panadería</option><option>Lácteos</option><option>Frutas</option><option selected>Verduras</option><option>Abarrotes</option><option>Comida preparada</option></select></div>
+                    <div class="form-group"><label for="lt-unidad">Unidad de medida *</label><select id="lt-unidad"><option selected>Jabas</option><option>Sacos</option><option>Cajas</option></select><span class="helper-text">Opciones habilitadas: Jabas / Sacos / Cajas.</span></div>
+                    <div class="form-group"><label for="lt-cantidad">Cantidad de unidades *</label><input type="text" id="lt-cantidad" value="3" placeholder=""></div>
+                    <div class="form-group"><label for="lt-precio">Precio por unidad (S/) *</label><input type="text" id="lt-precio" value="30.00" placeholder=""></div>
+                    <div class="form-group"><label for="lt-caducidad">Caducidad *</label><select id="lt-caducidad"><option>07/10/2026</option><option>08/10/2026</option><option selected>09/10/2026</option><option>10/10/2026</option><option>11/10/2026</option></select></div>
+                    <div class="form-group"><label for="lt-empaque">Empaque *</label><select id="lt-empaque"><option selected>Empaque original sellado</option><option>Preparado en el día</option></select></div>
+                    <div class="form-group"><label for="lt-fecha">Fecha de recojo *</label><select id="lt-fecha"><option selected>07/10/2026</option><option>08/10/2026</option></select></div>
+                    <div class="form-group"><label for="lt-ini">Hora inicio *</label><select id="lt-ini"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option selected>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option></select></div>
+                    <div class="form-group"><label for="lt-fin">Hora fin *</label><select id="lt-fin"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option selected>20:00</option><option>21:00</option><option>22:00</option></select></div>
+                </div>
+
+                <h2>Foto del lote *</h2>
+                <div class="placeholder-graphic"><p>🍎</p><p>Foto placeholder adjunta: tomate.jpg</p></div>
+     <div class="btn-grid-3">
+        <button type="button" class="btn" onclick="alert('Foto simulada: este mockup no sube archivos')">Cambiar foto</button>
+        <button type="button" class="btn btn-outline" onclick="alert('Foto simulada: este mockup no usa la cámara')">Tomar foto</button>
+        <button type="button" class="btn btn-outline" onclick="alert('Foto simulada: este mockup no sube archivos')">Subir archivo</button>
+     </div>
+
+                <div class="stat-grid">
+                    <div class="stat-card"><small>Cantidad</small><strong id="lt-calc-cant">3 jabas</strong></div>
+                    <div class="stat-card"><small>Precio unitario</small><strong id="lt-calc-unit">S/30.00</strong></div>
+                    <div class="stat-card"><small>Precio total</small><strong id="lt-calc-total">S/90.00</strong></div>
+                </div>
+
+                <div class="btn-group">
+                    <button type="submit" class="btn">Publicar lote</button>
+                    <button type="button" class="btn btn-outline" onclick="navigate('f4-01-InventarioDeOfertas')">Cancelar</button>
+                </div>
+            </form>
+
+            <aside class="aside-box">
+                <h3 class="azul">Local del ejemplo B2B</h3>
+                <p>Puesto Verde<br>Mercado Santa Anita<br>Pasillo 3, puesto 18<br>Contacto: 955 000 111<br>Este caso es independiente de Bodega San Luis.</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil">
+        <a href="#" onclick="navigate('f5-01-InicioDelComercio'); return false;"><span>🏠</span>Inicio</a>
+        <a href="#" onclick="navigate('f5-07-validarCodigoDeRecojo'); return false;"><span>🧾</span>Entregas</a>
+        <a href="#" onclick="navigate('f4-02-PublicarExcedente'); return false;"><span>➕</span>Publicar</a>
+        <a href="#" onclick="navigate('f4-01-InventarioDeOfertas'); return false;"><span>📦</span>Inventario</a>
+        <a href="#" onclick="navigate('datos-local'); return false;"><span>⋯</span>Más</a>
+    </nav>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/f4-comun.js"></script>
+    <script src="../js/f4-06-PublicarLote.js"></script>
+</body>
+
+</html>

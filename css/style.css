@@ -970,3 +970,19 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     justify-content: space-between; 
     align-items: center;
 }
+
+/* ===== Flujo 4 · Inventario y publicación del comercio (F4-01 a F4-14) ===== */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+.btn-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+.btn-grid-3 .btn, .offer-actions .btn { width: 100%; text-align: center; }
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+.stat-grid .stat-card { margin: 0; }
+.offer-actions { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 10px; margin-top: 14px; }
+.offer-actions.offer-actions-2 { grid-template-columns: 1fr 1fr; }
+.history-card .action-stack { margin-top: 14px; }
+.form-group input:disabled { color: var(--muted); cursor: not-allowed; }
+.action-stack { margin-top: 18px; }
+
+@media (max-width: 600px) {
+    .form-grid, .btn-grid-3, .stat-grid, .offer-actions, .offer-actions.offer-actions-2 { grid-template-columns: 1fr; }
+}

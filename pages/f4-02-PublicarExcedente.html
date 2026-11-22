@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Panel de gestión de FoodRakyone para comercios que rescatan excedentes alimentarios.">
+    <title>FoodRakyone - Publicar excedente</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/descubrir.css">
+</head>
+
+<body class="merchant-page" data-view="f4-publicar-excedente">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('f5-01-InicioDelComercio'); return false;">
+            <span class="logo-mark" aria-hidden="true">🛒</span>
+            <span>FoodRakyone</span>
+        </a>
+
+        <nav class="nav-links menu merchant-nav" aria-label="Principal">
+            <a href="#" onclick="navigate('f5-01-InicioDelComercio'); return false;">Inicio</a>
+            <a href="#" onclick="navigate('f4-01-InventarioDeOfertas'); return false;">[Ofertas]</a>
+            <a href="#" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" onclick="navigate('al-por-mayor'); return false;">Minoristas</a>
+            <a href="#" onclick="navigate('datos-local'); return false;">Configuración</a>
+        </nav>
+
+        <div class="nav-links right-links merchant-account">
+            <a href="#" onclick="alert('Sin notificaciones nuevas'); return false;">Notificaciones</a>
+            <span>·</span>
+            <a href="#" onclick="logout(); return false;">Cuenta</a>
+        </div>
+    </header>
+
+    <!-- Publicar excedente -->
+    <main id="app" class="container">
+        <h1>Publicar excedente</h1>
+        <p class="subtitle">Formulario corto B2C · Completa datos, precio y horario.</p>
+
+        <div class="grid-2">
+            <form onsubmit="handlePublicarExcedente(event)" oninput="actualizarVistaExcedente()" novalidate>
+                <div class="form-grid">
+                    <div class="form-group"><label for="ex-nombre">Nombre del producto *</label><input type="text" id="ex-nombre" value="Pack de pan" placeholder=""></div>
+                    <div class="form-group"><label for="ex-cantidad">Cantidad disponible *</label><input type="text" id="ex-cantidad" value="8 packs" placeholder=""></div>
+                    <div class="form-group"><label for="ex-categoria">Categoría *</label><select id="ex-categoria"><option selected>Panadería</option><option>Lácteos</option><option>Frutas</option><option>Verduras</option><option>Abarrotes</option><option>Comida preparada</option></select></div>
+                    <div class="form-group"><label for="ex-original">Precio original (S/) *</label><input type="text" id="ex-original" value="20.00" placeholder=""></div>
+                    <div class="form-group"><label for="ex-remate">Precio de remate manual (S/)</label><input type="text" id="ex-remate" value="10.00" placeholder=""><span class="helper-text">Puedes ingresar el remate sin usar los botones de descuento.</span></div>
+                    <div class="form-group"><label for="ex-caducidad">Caducidad *</label><select id="ex-caducidad"><option>07/10/2026</option><option>08/10/2026</option><option selected>09/10/2026</option><option>10/10/2026</option><option>11/10/2026</option></select></div>
+                    <div class="form-group"><label for="ex-empaque">Estado del empaque *</label><select id="ex-empaque"><option selected>Empaque original sellado</option><option>Preparado en el día</option></select><span class="helper-text">Opciones: Empaque original sellado / Preparado en el día.</span></div>
+                    <div class="form-group"><label for="ex-fecha">Fecha de recojo *</label><select id="ex-fecha"><option selected>07/10/2026</option><option>08/10/2026</option></select></div>
+                    <div class="form-group"><label for="ex-ini">Hora inicio *</label><select id="ex-ini"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option selected>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option></select></div>
+                    <div class="form-group"><label for="ex-fin">Hora fin *</label><select id="ex-fin"><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option selected>20:00</option><option>21:00</option><option>22:00</option></select></div>
+                </div>
+
+                <h2>Foto del alimento *</h2>
+                <div class="placeholder-graphic"><p>🍲</p><p>Foto placeholder adjunta: pan.jpg</p></div>
+     <div class="btn-grid-3">
+        <button type="button" class="btn" onclick="alert('Foto simulada: este mockup no sube archivos')">Cambiar foto</button>
+        <button type="button" class="btn btn-outline" onclick="alert('Foto simulada: este mockup no usa la cámara')">Tomar foto</button>
+        <button type="button" class="btn btn-outline" onclick="alert('Foto simulada: este mockup no sube archivos')">Subir archivo</button>
+     </div>
+
+                <div class="btn-grid-3"><button type="button" id="desc-50" class="btn" onclick="aplicarDescuento(50)">−50%</button><button type="button" id="desc-30" class="btn btn-outline" onclick="aplicarDescuento(30)">−30%</button><button type="button" id="desc-70" class="btn btn-outline" onclick="aplicarDescuento(70)">−70%</button></div>
+                <div class="stat-grid">
+                    <div class="stat-card"><small>Original</small><strong id="calc-orig">S/20.00</strong></div>
+                    <div class="stat-card"><small>Descuento</small><strong id="calc-desc">50%</strong></div>
+                    <div class="stat-card"><small>Remate calculado</small><strong id="calc-remate">S/10.00</strong></div>
+                </div>
+
+                <div class="btn-group">
+                    <button type="submit" class="btn">Publicar excedente</button>
+                    <button type="button" class="btn btn-outline" onclick="cancelarPublicacion()">Cancelar</button>
+                </div>
+            </form>
+
+            <aside class="aside-box" id="vista-previa"><h3 class="azul">Vista previa de la oferta</h3>
+        <p>Pack de pan<br>8 packs · S/10.00 cada uno<br>Recojo: 18:00–20:00<br>Caducidad: 09/10/2026<br>Empaque original sellado</p></aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil">
+        <a href="#" onclick="navigate('f5-01-InicioDelComercio'); return false;"><span>🏠</span>Inicio</a>
+        <a href="#" onclick="navigate('f5-07-validarCodigoDeRecojo'); return false;"><span>🧾</span>Entregas</a>
+        <a href="#" onclick="navigate('f4-02-PublicarExcedente'); return false;"><span>➕</span>Publicar</a>
+        <a href="#" onclick="navigate('f4-01-InventarioDeOfertas'); return false;"><span>📦</span>Inventario</a>
+        <a href="#" onclick="navigate('datos-local'); return false;"><span>⋯</span>Más</a>
+    </nav>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/f4-comun.js"></script>
+    <script src="../js/f4-02-PublicarExcedente.js"></script>
+</body>
+
+</html>
