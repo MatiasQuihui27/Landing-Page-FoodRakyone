@@ -7,19 +7,17 @@ const PRIVADAS = ['descubrir', 'resultados', 'filtros', 'mapa', 'reservas', 'al-
 // Devuelve el archivo HTML que corresponde a una vista (y sus estados de error).
 function pageFor(view, p = {}) {
     const err = p.error ? '-error' : '';
-    const inPages = location.pathname.includes('/pages/');
-
-    if (view === 'welcome') {
-        return inPages ? '../index.html' : 'index.html';
-    }
 
     let file;
-    if (view === 'login') file = `login-${p.role || state.role}${err}.html`;
+    if (view === 'welcome') file = 'index.html';
+    else if (view === 'login') file = `login-${p.role || state.role}${err}.html`;
     else if (view === 'recuperar') file = p.step === 2 ? 'recuperar-enviado.html' : `recuperar${err}.html`;
     else if (view === 'producto') file = `producto-${p.id}.html`;
     else file = `${view}${err}.html`;
 
-    return inPages ? file : `pages/${file}`;
+    // Obtiene la ruta base del proyecto (funciona en Live Server y en GitHub Pages)
+    const base = location.pathname.replace(/\/(pages|js)\/.*$/, '').replace(/\/[^/]*\.html$/, '');
+    return `${base}/pages/${file}`;
 }
 
 function navigate(view, params = {}) {
