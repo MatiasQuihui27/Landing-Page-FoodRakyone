@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="FoodRakyone conecta comercios y consumidores de Lima Metropolitana para rescatar excedentes alimentarios.">
+    <title>FoodRakyone - Validar código de recojo</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/descubrir.css">
+</head>
+
+<body class="merchant-page" data-view="validar-codigo">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">
+            <span class="logo-mark" aria-hidden="true">🛒</span>
+            <span>FoodRakyone</span>
+        </a>
+
+        <nav class="nav-links menu merchant-nav" aria-label="Principal">
+            <a href="#" data-v="inicio" onclick="navigate('inicio'); return false;">Inicio</a>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Ofertas</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">[Reservas]</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Minoristas</a>
+            <a href="#" data-v="datos-local" onclick="navigate('datos-local'); return false;">Configuración</a>
+        </nav>
+
+        <div class="nav-links right-links merchant-account">
+            <a href="#" onclick="alert('Sin notificaciones nuevas'); return false;">Notificaciones</a>
+            <span>·</span>
+            <a href="#" onclick="logout(); return false;">Cuenta</a>
+        </div>
+    </header>
+
+    <!-- Validar código de recojo -->
+    <main id="app" class="container">
+        <h1>Validar código de recojo</h1>
+        <p class="subtitle">Escanea el QR o ingresa el código numérico presentado por el consumidor.</p>
+
+        <div class="grid-2">
+            <div>
+                <h2>Escáner de código</h2>
+                <div class="placeholder-graphic">
+                    <p>QR</p>
+                    <p>Área de escáner placeholder · Encuadra el QR del consumidor</p>
+                </div>
+
+                <button type="button" class="btn btn-block">Abrir escáner</button>
+
+                <div class="form-group">
+                    <label for="codigo-numerico">Código numérico</label>
+                    <input type="text" id="codigo-numerico" value="482731" maxlength="6">
+                    <span class="helper-text">Código único de la reserva. También puedes ingresarlo manualmente.</span>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn"
+                        onclick="window.location.href='f5-10-entregaConfirmada.html'">Validar código</button>
+                    <button type="button" class="btn btn-outline"
+                        onclick="window.location.href='pendientes.html'">Cancelar</button>
+                </div>
+            </div>
+
+            <aside class="aside-box">
+                <strong>Tu local</strong>
+                <p>Bodega San Luis<br>Av. Canadá 120, La Victoria<br>Recojos: 18:00–20:00</p>
+                <hr>
+                <h4>Cómo validar</h4>
+
+                <div class="summary-row">
+                    <span class="summary-icon">1</span>
+                    <span>Escanea el QR del consumidor</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-icon">2</span>
+                    <span>O ingresa el código de 6 dígitos</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-icon">3</span>
+                    <span>Confirma la entrega física del producto</span>
+                </div>
+
+                <div class="stat-card">
+                    <strong>Pendiente: R-1042</strong>
+                    <small>Pack de pan × 2 · Ana Torres · S/20.00</small>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="inicio.html"><span>🏠</span>Inicio</a>
+        <a href="ofertas.html"><span>🏷️</span>Ofertas</a>
+        <a href="reservas.html"><span>🧾</span>Reservas</a>
+        <a href="minoristas.html"><span>📦</span>Minoristas</a>
+        <a href="configuracion.html"><span>⚙️</span>Configuración</a>
+    </nav>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+</body>
+
+</html> 

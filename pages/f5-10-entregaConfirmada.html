@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="FoodRakyone conecta comercios y consumidores de Lima Metropolitana para rescatar excedentes alimentarios.">
+    <title>FoodRakyone - Código validado</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/descubrir.css">
+</head>
+
+<body class="merchant-page" data-view="entrega-confirmada">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">
+            <span class="logo-mark" aria-hidden="true">🛒</span>
+            <span>FoodRakyone</span>
+        </a>
+
+        <nav class="nav-links menu merchant-nav" aria-label="Principal">
+            <a href="#" data-v="inicio" onclick="navigate('inicio'); return false;">[Inicio]</a>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Ofertas</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Minoristas</a>
+            <a href="#" data-v="datos-local" onclick="navigate('datos-local'); return false;">Configuración</a>
+        </nav>
+
+        <div class="nav-links right-links merchant-account">
+            <a href="#" onclick="alert('Sin notificaciones nuevas'); return false;">Notificaciones</a>
+            <span>·</span>
+            <a href="#" onclick="logout(); return false;">Cuenta</a>
+        </div>
+    </header>
+
+    <!-- Código validado / Entrega confirmada -->
+    <main id="app" class="container">
+        <h1 id="page-title">Código validado</h1>
+        <p id="page-subtitle" class="status-meta">Código 482731 · Se encontró la reserva R-1042.</p>
+
+        <div class="grid-2">
+            <div>
+                <div class="confirm-alert" role="status">
+                    <span class="confirm-icon" aria-hidden="true">✓</span>
+                    <div>
+                        <strong>✓ Operación confirmada</strong>
+                        <p id="alert-message">Código válido. Revisa el producto antes de confirmar la entrega.</p>
+                    </div>
+                </div>
+
+                <h2>Reserva correspondiente</h2>
+                <table class="detail-table" aria-label="Detalle de la reserva">
+                    <tbody>
+                        <tr class="is-header">
+                            <td>Reserva <span class="detail-sep">|</span> R-1042</td>
+                        </tr>
+                        <tr>
+                            <td>Consumidor <span class="detail-sep">|</span> Ana Torres</td>
+                        </tr>
+                        <tr>
+                            <td>Producto <span class="detail-sep">|</span> Pack de pan</td>
+                        </tr>
+                        <tr>
+                            <td>Cantidad <span class="detail-sep">|</span> 2 packs</td>
+                        </tr>
+                        <tr>
+                            <td>Monto pagado <span class="detail-sep">|</span> S/20.00</td>
+                        </tr>
+                        <tr>
+                            <td>Ventana <span class="detail-sep">|</span> 07/10/2026 · 18:00–20:00</td>
+                        </tr>
+                        <tr>
+                            <td>Código único <span class="detail-sep">|</span> 482731</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Botones iniciales (antes de confirmar) -->
+                <div id="acciones-previas" class="btn-group">
+                    <button type="button" id="btn-confirmar" class="btn">Confirmar entrega</button>
+                    <a href="pendientes.html" class="btn btn-outline">Cancelar</a>
+                </div>
+
+                <!-- Panel extra (se muestra al confirmar entrega) -->
+                <section id="panel-actualizacion" hidden>
+                    <h2>Actualización del panel</h2>
+                    <div class="metrics-list">
+                        <p>Capital del mes: S/60.00 + S/20.00 = S/80.00</p>
+                        <p>Unidades del mes: 6 + 2 = 8</p>
+                        <p>Pendientes de hoy: 2 – 1 = 1</p>
+                    </div>
+
+                    <div class="action-stack">
+                        <a href="inicio.html" class="btn">Ver inicio actualizado</a>
+                        <a href="pendientes.html" class="btn btn-outline">Ver pendientes</a>
+                        <a href="f5-12-HistorialDelComercio.html" class="btn btn-outline">Ver historial</a>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Panel lateral previo a la confirmación -->
+            <aside id="aside-confirmacion" class="aside-box">
+                <strong>Confirmación necesaria</strong>
+                <p>Validar el código identifica la reserva. Confirmar entrega cambia su estado a Recogida.</p>
+                <hr>
+                <h4>Impacto en métricas</h4>
+                <div class="metrics-list">
+                    <p>Capital: S/60.00 + S/20.00 = S/80.00</p>
+                    <p>Unidades: 6 + 2 = 8</p>
+                    <p>Pendientes: 2 – 1 = 1</p>
+                </div>
+
+                <div class="alert">
+                    <strong>Ana Torres · Contacto 912 345 678</strong><br>
+                    2 packs de pan sellados listos para entregar
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="inicio.html"><span>🏠</span>Inicio</a>
+        <a href="ofertas.html"><span>🏷️</span>Ofertas</a>
+        <a href="reservas.html"><span>🧾</span>Reservas</a>
+        <a href="minoristas.html"><span>📦</span>Minoristas</a>
+        <a href="configuracion.html"><span>⚙️</span>Configuración</a>
+    </nav>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+    <script>
+        document.getElementById('btn-confirmar').addEventListener('click', function () {
+            document.title = 'FoodRakyone - Entrega confirmada';
+            document.getElementById('page-title').textContent = 'Entrega confirmada — Recogida / métricas actualizadas';
+            document.getElementById('page-subtitle').textContent = 'R-1042 · Recogida · 07/10/2026, 19:45.';
+            document.getElementById('alert-message').textContent = 'Entregaste 2 packs de pan a Ana Torres. La reserva pasó a Recogida.';
+
+            const accionesPrevias = document.getElementById('acciones-previas');
+            accionesPrevias.hidden = true;
+            accionesPrevias.style.display = 'none';
+
+            const asideConfirmacion = document.getElementById('aside-confirmacion');
+            asideConfirmacion.hidden = true;
+            asideConfirmacion.style.display = 'none';
+
+            document.getElementById('panel-actualizacion').hidden = false;
+        });
+    </script>
+</body>
+
+</html>

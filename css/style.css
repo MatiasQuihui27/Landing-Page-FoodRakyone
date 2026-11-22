@@ -371,6 +371,172 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
 
 .check-item:hover { background: var(--blue-light); border-color: var(--blue); }
 
+/* Variantes compartidas para vistas de comercio */
+.page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.summary-pill {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #334155;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.history-list,
+.action-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.history-list {
+    gap: 14px;
+    margin-top: 12px;
+}
+
+.history-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #fff;
+    padding: 16px;
+}
+
+.history-card p {
+    margin: 0 0 4px;
+    line-height: 1.4;
+}
+
+.history-meta {
+    color: #475569;
+    font-size: 0.9rem;
+    margin-bottom: 12px !important;
+}
+
+.history-card .btn {
+    width: 100%;
+    text-align: center;
+}
+
+.stat-card {
+    border: 1px solid var(--blue-border);
+    border-radius: 8px;
+    background: #f8fafc;
+    padding: 12px;
+    margin-top: 10px;
+}
+
+.stat-card strong {
+    display: block;
+    color: var(--blue);
+    margin-bottom: 4px;
+}
+
+.stat-card small {
+    color: #475569;
+    font-size: 0.82rem;
+}
+
+.confirmation-wrapper {
+    max-width: 680px;
+}
+
+.status-meta {
+    margin: 6px 0 18px;
+    color: var(--blue);
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.confirm-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    border: 1px solid var(--blue-border);
+    border-radius: 8px;
+    background: var(--blue-light);
+    color: var(--text);
+    margin-bottom: 24px;
+    padding: 14px 16px;
+}
+
+.confirm-icon {
+    display: inline-flex;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid var(--blue);
+    border-radius: 50%;
+    color: var(--blue);
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+.confirm-alert p {
+    margin: 2px 0 0;
+    color: #334155;
+    font-size: 0.95rem;
+}
+
+.detail-table {
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    margin: 12px 0 24px;
+}
+
+.detail-table tr:not(:last-child) td {
+    border-bottom: 1px solid var(--border);
+}
+
+.detail-table td {
+    padding: 12px 16px;
+    color: #334155;
+    font-size: 0.95rem;
+}
+
+.detail-table tr.is-header td {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.detail-sep {
+    color: var(--muted);
+    margin: 0 10px;
+}
+
+.metrics-list {
+    margin: 10px 0 20px;
+    color: #334155;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.metrics-list p {
+    margin: 0;
+}
+
+.action-stack .btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+}
+
 /* --- NUEVOS ESTILOS PARA FLUJO DESCUBRIR --- */
 
 /* Layout principal de 2 columnas */

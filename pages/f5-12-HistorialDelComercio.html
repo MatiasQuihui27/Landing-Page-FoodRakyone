@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="FoodRakyone conecta comercios y consumidores de Lima Metropolitana para rescatar excedentes alimentarios.">
+    <title>FoodRakyone - Historial del comercio</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/descubrir.css">
+</head>
+
+<body class="merchant-page" data-view="historial-comercio">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">
+            <span class="logo-mark" aria-hidden="true">🛒</span>
+            <span>FoodRakyone</span>
+        </a>
+
+        <nav class="nav-links menu merchant-nav" aria-label="Principal">
+            <a href="#" data-v="inicio" onclick="navigate('inicio'); return false;">[Inicio]</a>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Ofertas</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Minoristas</a>
+            <a href="#" data-v="datos-local" onclick="navigate('datos-local'); return false;">Configuración</a>
+        </nav>
+
+        <div class="nav-links right-links merchant-account">
+            <a href="#" onclick="alert('Sin notificaciones nuevas'); return false;">Notificaciones</a>
+            <span>·</span>
+            <a href="#" onclick="logout(); return false;">Cuenta</a>
+        </div>
+    </header>
+
+    <!-- Historial del comercio -->
+    <main id="app" class="container">
+        <div class="page-header">
+            <div>
+                <h1>Historial del comercio</h1>
+                <p class="subtitle">Entregadas y canceladas diferenciadas · Recientes primero.</p>
+            </div>
+            <span class="summary-pill">3 recogidas · 1 cancelada</span>
+        </div>
+
+        <div class="grid-2">
+            <div>
+                <h2>Estados del historial</h2>
+                <div class="check-grid">
+                    <label class="check-item">
+                        <input type="checkbox" checked>
+                        Entregadas
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" checked>
+                        Canceladas
+                    </label>
+                </div>
+
+                <h2>Registro de reservas</h2>
+                <div class="history-list">
+                    <article class="history-card">
+                        <p><strong>Recogida · 07/10/2026, 19:45</strong></p>
+                        <p><strong>R-1042 · Pack de pan × 2 · S/20.00</strong></p>
+                        <p class="history-meta">Ana Torres · Código 482731 · Incluida en capital y unidades del mes</p>
+                        <button type="button" class="btn">Ver detalle</button>
+                    </article>
+
+                    <article class="history-card">
+                        <p><strong>Cancelada · 07/10/2026, 18:00</strong></p>
+                        <p><strong>R-1041 · Leche sellada × 1 · S/4.00 · No suma ingreso entregado</strong></p>
+                        <p class="history-meta">Elena Ruiz · Stock liberado: 1 unidad · No se cuenta como comida rescatada</p>
+                        <button type="button" class="btn">Ver detalle</button>
+                    </article>
+
+                    <article class="history-card">
+                        <p><strong>Recogida · 06/10/2026, 19:00</strong></p>
+                        <p><strong>R-1040 · Pack de pan × 3 · S/30.00</strong></p>
+                        <p class="history-meta">Ana Torres · Incluida en el acumulado anterior</p>
+                        <button type="button" class="btn">Ver detalle</button>
+                    </article>
+
+                    <article class="history-card">
+                        <p><strong>Recogida · 05/10/2026, 19:15</strong></p>
+                        <p><strong>R-1038 · Pack de pan × 3 · S/30.00</strong></p>
+                        <p class="history-meta">Mario Díaz · Incluida en el acumulado anterior</p>
+                        <button type="button" class="btn">Ver detalle</button>
+                    </article>
+                </div>
+            </div>
+
+            <aside class="aside-box">
+                <strong>Tu local</strong>
+                <p>Bodega San Luis<br>Av. Canadá 120, La Victoria<br>Recojos: 18:00–20:00</p>
+                <hr>
+                <h4>Acumulado del mes · Octubre</h4>
+
+                <div class="stat-card">
+                    <strong>Capital: S/80.00</strong>
+                    <small>R-1042 S/20 + R-1040 S/30 + R-1038 S/30</small>
+                </div>
+
+                <div class="stat-card">
+                    <strong>Unidades rescatadas: 8</strong>
+                    <small>Sólo las 3 Recogidas suman; la cancelada no.</small>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="inicio.html"><span>🏠</span>Inicio</a>
+        <a href="ofertas.html"><span>🏷️</span>Ofertas</a>
+        <a href="reservas.html"><span>🧾</span>Reservas</a>
+        <a href="minoristas.html"><span>📦</span>Minoristas</a>
+        <a href="configuracion.html"><span>⚙️</span>Configuración</a>
+    </nav>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+</body>
+
+</html>
