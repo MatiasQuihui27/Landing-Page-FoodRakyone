@@ -7,20 +7,11 @@ const PRIVADAS = ['descubrir', 'resultados', 'filtros', 'mapa', 'reservas', 'al-
 // Devuelve el archivo HTML que corresponde a una vista (y sus estados de error).
 function pageFor(view, p = {}) {
     const err = p.error ? '-error' : '';
-    const inPages = location.pathname.includes('/pages/');
-
-    let file;
-    if (view === 'welcome') {
-        file = 'index.html';
-        return inPages ? `../${file}` : file;
-    }
-
-    if (view === 'login') file = `login-${p.role || state.role}${err}.html`;
-    else if (view === 'recuperar') file = p.step === 2 ? 'recuperar-enviado.html' : `recuperar${err}.html`;
-    else if (view === 'producto') file = `producto-${p.id}.html`;
-    else file = `${view}${err}.html`;
-
-    return inPages ? file : `pages/${file}`;
+    if (view === 'welcome') return 'index.html';
+    if (view === 'login') return `login-${p.role || state.role}${err}.html`;
+    if (view === 'recuperar') return p.step === 2 ? 'recuperar-enviado.html' : `recuperar${err}.html`;
+    if (view === 'producto') return `producto-${p.id}.html`;
+    return `${view}${err}.html`;
 }
 
 function navigate(view, params = {}) {
