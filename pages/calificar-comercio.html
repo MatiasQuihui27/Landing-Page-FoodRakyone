@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Califica tu experiencia de recojo en FoodRakyone.">
+    <title>FoodRakyone - Calificar comercio</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/descubrir.css">
+</head>
+
+<body data-view="reservas">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;" hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <main id="app" class="container">
+
+        <!-- Formulario de calificación -->
+        <section id="pantalla-calificar">
+            <p class="crumb">Inicio &gt; Reservas &gt; Calificar comercio</p>
+            <h1>Califica tu experiencia</h1>
+            <p class="subtitle" id="resumen-calificacion"></p>
+
+            <div class="layout-grid">
+                <section>
+                    <h2>¿Cómo fue tu recojo?</h2>
+                    <p>Elige de 1 a 5 estrellas. Solo puedes calificar una vez esta reserva.</p>
+
+                    <p>Tu calificación: <strong><span id="valor-calificacion">4</span> de 5</strong></p>
+                    <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-bottom:20px;">
+                        <button type="button" class="btn-outline" data-estrellas="1" onclick="seleccionarCalificacion(1)">1 ☆</button>
+                        <button type="button" class="btn-outline" data-estrellas="2" onclick="seleccionarCalificacion(2)">2 ☆</button>
+                        <button type="button" class="btn-outline" data-estrellas="3" onclick="seleccionarCalificacion(3)">3 ☆</button>
+                        <button type="button" class="btn" data-estrellas="4" aria-pressed="true" onclick="seleccionarCalificacion(4)">4 ★</button>
+                        <button type="button" class="btn-outline" data-estrellas="5" onclick="seleccionarCalificacion(5)">5 ☆</button>
+                    </div>
+
+                    <form id="form-calificacion">
+                        <div class="form-group">
+                            <label for="comentario-calificacion">Comentario opcional</label>
+                            <textarea id="comentario-calificacion" rows="3" placeholder="Comparte tu experiencia..."></textarea>
+                        </div>
+                        <div class="form-grid">
+                            <button type="submit" class="btn">Enviar calificación</button>
+                            <button type="button" class="btn-outline" onclick="navigate('reserva-recogida')">Cancelar</button>
+                        </div>
+                    </form>
+                </section>
+
+                <aside>
+                    <div class="aside-box">
+                        <h3 class="azul">Tu zona</h3>
+                        <p>Av. Canadá 100, La Victoria</p>
+                        <p>Distancias aproximadas</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Calificación registrada -->
+        <section id="pantalla-calificacion-registrada" hidden>
+            <p class="crumb">Inicio &gt; Reservas &gt; Calificación registrada</p>
+            <h1>Calificación registrada</h1>
+            <p class="subtitle" id="referencia-calificacion"></p>
+
+            <div class="layout-grid">
+                <section>
+                    <h2>Tu comentario</h2>
+                    <p id="comentario-registrado"></p>
+
+                    <h2>Promedio del comercio</h2>
+                    <p>4.5 / 5 · 13 valoraciones ilustrativas</p>
+                    <p>Promedio actualizado mostrado en la ficha y ofertas.</p>
+
+                    <div class="form-grid">
+                        <button type="button" class="btn" onclick="navigate('historial-recojo')">Ver reservas</button>
+                        <button type="button" class="btn-outline" onclick="navigate('descubrir')">Descubrir</button>
+                    </div>
+                </section>
+
+                <aside>
+                    <div class="alert" role="status">
+                        <strong>✓ Operación confirmada</strong><br>
+                        Registramos tu calificación de <strong><span id="estrellas-confirmadas"></span> de 5 estrellas.</strong>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/calificar-comercio.js"></script>
+</body>
+
+</html>

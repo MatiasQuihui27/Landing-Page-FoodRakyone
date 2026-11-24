@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Consulta el estado de tu solicitud de reembolso en FoodRakyone.">
+    <title>FoodRakyone - Reembolso en proceso</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/descubrir.css">
+</head>
+
+<body data-view="reservas">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;" hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <!-- Reembolso en proceso -->
+    <main id="app" class="container">
+        <p class="crumb">Inicio &gt; Reservas &gt; Reembolso en proceso</p>
+        <h1>Reembolso en proceso</h1>
+        <p class="subtitle" id="reembolso-proceso-resumen"></p>
+
+        <section>
+            <div class="alert">
+                <strong>✓ Operación confirmada</strong><br>
+                Tu solicitud fue recibida y está pendiente de revisión. El reembolso aún no ha sido aprobado ni abonado.
+            </div>
+
+            <h2>Estado de tu reserva</h2>
+            <div class="box">
+                <p><strong>Reembolso en proceso</strong></p>
+                <p><strong id="proceso-producto"></strong></p>
+                <p id="proceso-total"></p>
+                <p id="proceso-comercio"></p>
+                <p id="proceso-motivo"></p>
+                <p>Solicitud recibida para revisión. No se confirma el abono todavía.</p>
+            </div>
+
+            <br>
+            <button type="button" class="btn-green btn-block" onclick="navigate('reservas')">
+                Ver mis reservas
+            </button>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/reembolso-proceso.js"></script>
+</body>
+</html>

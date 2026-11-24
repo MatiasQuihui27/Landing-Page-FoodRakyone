@@ -1,36 +1,48 @@
 // reservas.js — comportamiento de la pantalla "Mis reservas".
-// Requiere state.js y shared.js (se cargan antes en el HTML).
+// Requiere state.js y shared.js.
 
-const dinero = n => 'S/' + Number(n).toFixed(2);
+const dinero = n => 'S/' + Number(n || 0).toFixed(2);
 
-function irAPagarReserva(indice) {
+function seleccionarReserva(indice, pantalla) {
     state.reservaSeleccionadaIndex = indice;
-    sessionStorage.setItem( 'foodrakyone-reserva-seleccionada', String(indice)  );
-    navigate('pagar-reserva');
+    sessionStorage.setItem('foodrakyone-reserva-seleccionada', String(indice));
+    navigate(pantalla);
 }
 
-function irACancelarReserva(indice) {
-    state.reservaSeleccionadaIndex = indice;
-    sessionStorage.setItem( 'foodrakyone-reserva-seleccionada', String(indice)  );
-    navigate('cancelar-reserva');
-}
+function irAPagarReserva(i) { seleccionarReserva(i, 'pagar-reserva'); }
+function irACancelarReserva(i) { seleccionarReserva(i, 'cancelar-reserva'); }
 
 function renderReservas() {
-    const lista = state.reservas.map((r, indice) => r.estado === 'cancelada' ? '' : `<div class="favorite-item"><div><strong>${r.n}x ${r.nombre}</strong><br>
-            <small>${r.store} · Recojo hoy 18:00-20:00</small><br><small>Total ${dinero(r.total)}</small></div>
-            <div>
-                <button class="btn-green btn-block" onclick="irAPagarReserva(${indice})">
-                    ${r.estadoPago === 'pagada' ? 'Pago aceptado' : 'Realizar pago'}
-                </button>
-                <button type="button" class="btn-outline btn-block" onclick="irACancelarReserva(${indice})">Cancelar reserva</button>
-            </div>
-            <div class="codigo">Código<br><b>${r.codigo}</b></div></div>`).join('');
-    return `<p class="crumb">Inicio> Reservas</p><h1>Mis reservas</h1><p class="subtitle">Muestra tu código al recoger en el local.</p>
-        ${lista || `<div class="alert">! Aún no tienes reservas. Elige una oferta y confirma tu primera reserva.</div>
-        <button class="btn" onclick="navigate('descubrir')">Descubrir ofertas</button>`}`;
+    const lista = document.getElementById('lista-reservas');
+    const aviso = document.getElementById('reservas-vacias');
+    const navegacion = document.getElementById('navegacion-reservas');
+
+    const disponibles = state.reservas.map((r, i) => ({ r, i }))
+        .filter(({ r }) => r.estado !== 'cancelada');
+
+    const pendientes = disponibles.filter(({ r }) => r.estadoPago !== 'pagada' && r.estado !== 'recogida');
+
+    navegacion.hidden = !disponibles.length;
+    aviso.hidden = !!pendientes.length;
+    lista.innerHTML = '';
+
+    pendientes.forEach(({ r, i }) => {
+        const tarjeta = document.getElementById('plantilla-reserva').content.firstElementChild.cloneNode(true);
+        const campo = n => tarjeta.querySelector(`[data-campo="${n}"]`);
+
+        campo('titulo').textContent = `${r.n}x ${r.nombre}`;
+        campo('detalle').textContent = `${r.store} · Recojo hoy 18:00-20:00`;
+        campo('total').textContent = dinero(r.total);
+        campo('codigo').textContent = r.codigo || 'Pendiente';
+
+        tarjeta.querySelector('[data-accion="pagar"]').onclick = () => irAPagarReserva(i);
+        tarjeta.querySelector('[data-accion="cancelar"]').onclick = () => irACancelarReserva(i);
+
+        lista.appendChild(tarjeta);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     renderHeader();
-    app.innerHTML = renderReservas();
+    renderReservas();
 });

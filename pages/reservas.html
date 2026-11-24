@@ -36,9 +36,39 @@
 
     <!-- Mis reservas -->
     <main id="app" class="container">
-<p class="crumb">Inicio> Reservas</p><h1>Mis reservas</h1><p class="subtitle">Muestra tu código al recoger en el local.</p>
-        <div class="alert">! Aún no tienes reservas. Elige una oferta y confirma tu primera reserva.</div>
-        <button class="btn" onclick="navigate('descubrir')">Descubrir ofertas</button>
+        <p class="crumb">Inicio &gt; Reservas</p>
+        <h1>Mis reservas</h1>
+        <p class="subtitle">Consulta y completa el pago de tus reservas.</p>
+
+        <div id="navegacion-reservas" hidden>
+            <div class="form-grid">
+                <button type="button" class="btn-green" onclick="navigate('por-recoger')">Por recoger</button>
+                <button type="button" class="btn-outline" onclick="navigate('historial-recojo')">Historial de recojo</button>
+            </div>
+            <br>
+        </div>
+
+        <div id="lista-reservas"></div>
+
+        <div id="reservas-vacias" hidden>
+            <div class="alert">No tienes reservas pendientes de pago.</div>
+            <button class="btn" onclick="navigate('descubrir')">Descubrir ofertas</button>
+        </div>
+
+        <template id="plantilla-reserva">
+            <div class="favorite-item">
+                <div>
+                    <strong data-campo="titulo"></strong><br>
+                    <small data-campo="detalle"></small><br>
+                    <small>Total <span data-campo="total"></span></small>
+                </div>
+                <div>
+                    <button type="button" class="btn-green btn-block" data-accion="pagar">Realizar pago</button>
+                    <button type="button" class="btn-outline btn-block" data-accion="cancelar">Cancelar reserva</button>
+                </div>
+                <div class="codigo">Código<br><b data-campo="codigo"></b></div>
+            </div>
+        </template>
     </main>
 
     <footer class="site-footer">

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reporta un problema con tu reserva en FoodRakyone.">
+    <title>FoodRakyone - Reportar problema</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/descubrir.css">
+</head>
+
+<body data-view="reservas">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;" hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <main id="app" class="container">
+
+        <!-- Formulario de reporte -->
+        <section id="pantalla-reporte">
+            <p class="crumb">Inicio &gt; Reservas &gt; Reportar problema</p>
+            <h1>Reportar problema</h1>
+            <p class="subtitle" id="resumen-reporte"></p>
+
+            <div class="layout-grid">
+                <section>
+                    <h2>Selecciona uno o varios motivos</h2>
+                    <form id="form-reporte">
+                        <div class="check-grid">
+                            <label class="check-item"><input type="checkbox" name="motivos" value="Problema de higiene"> Problema de higienico</label>
+                            <label class="check-item"><input type="checkbox" name="motivos" value="Empaque dañado"> Empaque dañado</label>
+                            <label class="check-item"><input type="checkbox" name="motivos" value="Producto diferente"> Producto diferente</label>
+                            <label class="check-item"><input type="checkbox" name="motivos" value="Local cerrado"> Local cerrado</label>
+                            <label class="check-item"><input type="checkbox" name="motivos" value="Sin stock"> Sin stock</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descripcion-reporte">Descripción opcional</label>
+                            <textarea id="descripcion-reporte" rows="3" placeholder="Describe lo ocurrido..."></textarea>
+                        </div>
+
+                        <div class="form-grid">
+                            <button type="submit" class="btn">Enviar reporte</button>
+                            <button type="button" class="btn-outline" onclick="navigate('reserva-recogida')">Cancelar</button>
+                        </div>
+                    </form>
+                </section>
+
+                <aside>
+                    <div class="aside-box">
+                        <h3 class="azul">Revisión del incidente</h3>
+                        <p>El reporte será recibido para revisión. No se genera un reembolso automático.</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Confirmación del reporte -->
+        <section id="pantalla-reporte-recibido" hidden>
+            <p class="crumb">Inicio &gt; Reservas &gt; Reporte recibido</p>
+            <h1>Reporte recibido</h1>
+            <p class="subtitle" id="resumen-reporte-recibido"></p>
+
+            <div class="layout-grid">
+                <section>
+                    <div class="alert" role="status">
+                        <strong>✓ Operación confirmada</strong><br>
+                        Recibimos tu reporte. Tu caso será revisado.
+                    </div>
+
+                    <h2>Motivos enviados</h2>
+                    <p id="motivos-enviados"></p>
+                    <p id="descripcion-enviada" hidden>
+                        <strong>Descripción:</strong> <span></span>
+                    </p><br>
+                    <button type="button" class="btn btn-block" onclick="navigate('reserva-recogida')">Volver al detalle</button>
+                </section>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/reportar-problema.js"></script>
+</body>
+
+</html>

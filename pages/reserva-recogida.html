@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Confirmación de recojo de reserva en FoodRakyone.">
+    <title>FoodRakyone - Reserva recogida</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/descubrir.css">
+</head>
+
+<body data-view="reservas">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;" hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <!-- Reserva recogida -->
+    <main id="app" class="container">
+        <p class="crumb">Inicio &gt; Reservas &gt; Reserva recogida</p>
+        <h1>Reserva recogida</h1>
+        <p class="subtitle" id="resumen-recogida"></p>
+
+        <div class="layout-grid">
+            <section>
+                <h2>Resumen de la reserva</h2>
+                <div class="box">
+                    <table width="100%" cellpadding="10" style="border-collapse: collapse;">
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #D1D5DB;">
+                                <td>Producto</td>
+                                <td><strong id="recogida-producto"></strong></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #D1D5DB;">
+                                <td>Cantidad</td>
+                                <td id="recogida-cantidad"></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #D1D5DB;">
+                                <td>Subtotal</td>
+                                <td id="recogida-subtotal"></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #D1D5DB;">
+                                <td><strong>Total</strong></td>
+                                <td><strong id="recogida-total"></strong></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #D1D5DB;">
+                                <td>Comercio</td>
+                                <td id="recogida-comercio"></td>
+                            </tr>
+                            <tr>
+                                <td>Recojo</td>
+                                <td id="recogida-horario"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="btn-grid-3">
+                    <button type="button" class="btn-green" onclick="navigate('calificar-comercio')">Calificar comercio</button>
+                    <button type="button" class="btn-outline" onclick="navigate('reportar-problema')">Reportar problema</button>
+                    <button type="button" class="btn-outline" onclick="navigate('mi-impacto')">Ver mi impacto</button>
+                </div>
+            </section>
+
+            <!-- Confirmación de recojo -->
+            <aside>
+                <div class="alert success">
+                    <strong>✓ Operación confirmada</strong><br>
+                    Recojo confirmado por el comercio. ¡Gracias por rescatar alimentos!
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/reserva-recogida.js"></script>
+</body>
+
+</html>

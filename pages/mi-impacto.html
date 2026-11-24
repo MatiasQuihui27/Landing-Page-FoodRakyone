@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Consulta tu impacto en el rescate de alimentos con FoodRakyone.">
+    <title>FoodRakyone - Mi impacto</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/descubrir.css">
+</head>
+
+<body data-view="perfil">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;" hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <!-- Mi impacto -->
+    <main id="app" class="container">
+        <p class="crumb">Inicio &gt; Perfil &gt; Mi impacto</p>
+        <h1>Mi impacto</h1>
+        <p class="subtitle">Comida salvada como puntaje · Solo recojos completados.</p>
+
+        <div class="layout-grid">
+            <section>
+                <div class="box">
+                    <small>Comida salvada</small>
+                    <h3><strong id="impacto-puntos">0 puntos</strong></h3>
+                    <small id="impacto-resumen">Cada pack recogido suma 1 punto.</small>
+                </div><br>
+
+                <div class="alert">
+                    <strong>✓ Operación confirmada</strong><br>
+                    <span id="impacto-confirmacion">¡Gracias por contribuir al rescate de alimentos!</span>
+                </div>
+
+                <h2>Tus rescates</h2>
+                <div id="lista-rescates"></div>
+                <p id="rescates-vacios" hidden>Aún no tienes compras recogidas.</p>
+
+                <h2>Cuándo se actualiza</h2>
+                <p>El puntaje se incrementa al confirmar el recojo, no al reservar ni al pagar.</p><br>
+
+                <div class="form-grid">
+                    <button type="button" class="btn" onclick="navigate('descubrir')">Encontrar otro rescate</button>
+                    <button type="button" class="btn-outline" onclick="navigate('perfil')">Volver al perfil</button>
+                </div>
+            </section>
+
+            <aside>
+                <div class="aside-box">
+                    <h3 class="azul">Tu zona</h3>
+                    <p>Av. Canadá 100, La Victoria</p>
+                    <p>Distancias aproximadas</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/mi-impacto.js"></script>
+</body>
+
+</html>

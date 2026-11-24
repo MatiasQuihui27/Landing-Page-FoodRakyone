@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Consulta tus reservas recogidas en FoodRakyone.">
+    <title>FoodRakyone - Historial de recojos</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/descubrir.css">
+</head>
+
+<body data-view="reservas">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('inicio'); return false;">🛒 FoodRakyone</a>
+        <nav class="nav-links menu" id="menu" aria-label="Principal" hidden>
+            <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;">Descubrir</a>
+            <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;">Mapa</a>
+            <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;">Reservas</a>
+            <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;">Al por mayor</a>
+            <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;">Perfil</a>
+        </nav>
+        <div class="nav-links right-links">
+            <a href="#" id="lnk-notif" onclick="alert('Sin notificaciones nuevas'); return false;" hidden>Notificaciones</a>
+            <a href="#" id="lnk-cuenta" onclick="logout(); return false;" hidden>Cuenta · Salir</a>
+            <a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a>
+        </div>
+    </header>
+
+    <!-- Historial de recojos -->
+    <main id="app" class="container">
+        <p class="crumb">Inicio &gt; Reservas &gt; Historial de recojos</p>
+        <h1>Historial de recojos</h1>
+        <p class="subtitle" id="resumen-historial">Solo reservas recogidas · Más recientes primero.</p>
+
+        <div class="layout-grid">
+            <section>
+                <div class="form-grid">
+                    <button type="button" class="btn-green" id="btn-por-recoger">Por recoger</button>
+                    <button type="button" class="btn-outline" id="btn-volver">Volver</button>
+                </div>
+
+                <!-- Historial vacío -->
+                <br id="separacion-historial-vacio" hidden>
+                <section id="historial-vacio" hidden>
+                    <div class="alert">
+                        ⓘ Información<br>
+                        Aún no tienes recojos registrados.
+                    </div>
+                    <h2>Tu primer rescate</h2>
+                    <p>Las reservas pendientes o canceladas no aparecen en este historial.</p>
+                    <button type="button" class="btn-green btn-block" onclick="navigate('descubrir')">Descubrir ofertas</button>
+                </section>
+
+                <!-- Historial con registros -->
+                <section id="historial-con-registros" hidden>
+                    <h2>Recojos completados</h2>
+                    <div id="lista-historial-recojo"></div>
+                </section>
+            </section>
+
+            <!-- Segunda columna -->
+            <aside id="zona-historial" hidden>
+                <div class="aside-box">
+                    <h3 class="azul">Tu zona</h3>
+                    <p>Av. Canadá 100, La Victoria</p>
+                    <p>Distancias aproximadas</p>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Plantilla de reserva recogida -->
+        <template id="plantilla-historial">
+            <div class="box">
+                <p><strong data-campo="referencia"></strong> · Recogida · <span data-campo="fecha"></span></p>
+                <p><strong data-campo="producto"></strong></p>
+                <p data-campo="total"></p>
+                <p data-campo="comercio"></p>
+                <p data-campo="horario"></p>
+                <p data-campo="calificacion" hidden></p>
+                <div class="form-grid">
+                    <button type="button" class="btn-green" data-accion="detalle">Ver detalle</button>
+                    <button type="button" class="btn-outline" data-accion="calificar">Calificar</button>
+                </div>
+            </div>
+        </template>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FoodRakyone · Rescata excedentes alimentarios en Lima Metropolitana</p>
+        <p><a href="#" onclick="alert('Centro de ayuda FoodRakyone'); return false;">Ayuda</a></p>
+    </footer>
+
+    <!-- Barra inferior para Mobile (visible solo con sesión iniciada y en pantallas angostas) -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Navegación móvil" hidden>
+        <a href="#" data-v="descubrir" onclick="navigate('descubrir'); return false;"><span>🔍</span>Descubrir</a>
+        <a href="#" data-v="mapa" onclick="navigate('mapa'); return false;"><span>📍</span>Mapa</a>
+        <a href="#" data-v="reservas" onclick="navigate('reservas'); return false;"><span>🧾</span>Reservas</a>
+        <a href="#" data-v="al-por-mayor" onclick="navigate('al-por-mayor'); return false;"><span>📦</span>Al por mayor</a>
+        <a href="#" data-v="perfil" onclick="navigate('perfil'); return false;"><span>👤</span>Perfil</a>
+    </nav>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/historial-recojo.js"></script>
+</body>
+
+</html>
