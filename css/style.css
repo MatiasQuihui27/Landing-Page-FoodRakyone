@@ -17,6 +17,11 @@
     --success-bg: #f0fdf4;
     --success-border: #bbf7d0;
     --success-text: #166534;
+    --primary-blue: #1d4ed8;
+    --primary-green: #4d7c0f;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --bg-light: #eff6ff;
 }
 
 * {
@@ -28,15 +33,70 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Escalado fluido global: reduce suavemente todos los tamaños en rem al angostar la pantalla */
+html {
+    font-size: clamp(13.5px, 0.78rem + 0.35vw, 16px);
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
+    max-width: 100%;
+    overflow-x: hidden;
     background: #f8fafc;
     color: var(--text);
     line-height: 1.5;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+h1, h2, h3, h4, p, li, small, span, strong, td, th, a, button {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 h1, h2, h3, .logo {
     font-family: 'Plus Jakarta Sans', sans-serif;
     letter-spacing: -0.025em;
+}
+
+/* Evitar que los hijos de CSS Grid empujen el ancho fuera de la pantalla */
+.grid-2 > *,
+.layout-grid > *,
+.role-grid > *,
+.card-grid > *,
+.form-grid > *,
+.check-grid > *,
+.product-detail-grid > *,
+.btn-grid-3 > *,
+.stat-grid > *,
+.offer-actions > *,
+.merchant-page .dashboard-columns > *,
+.merchant-page .metrics > *,
+.merchant-page .action-grid > *,
+.merchant-page .delivery-actions > * {
+    min-width: 0;
+}
+
+/* Accesibilidad y utilidades globales */
+[hidden] {
+    display: none !important;
+}
+
+.skip {
+    position: absolute;
+    left: -999px;
+    top: 8px;
+    z-index: 20;
+    background: var(--blue);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.skip:focus {
+    left: 8px;
 }
 
 /* Header */
@@ -47,14 +107,17 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 16px;
 }
 
 .logo {
     color: var(--blue);
     font-weight: 800;
-    font-size: 1.3rem;
+    font-size: clamp(1.05rem, 0.9rem + 0.8vw, 1.3rem);
     cursor: pointer;
     text-decoration: none;
+    white-space: nowrap;
     transition: opacity 0.15s ease;
 }
 
@@ -62,14 +125,17 @@ header {
 
 .nav-links {
     display: flex;
-    gap: 24px;
-    font-size: 0.9rem;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    font-size: clamp(0.8rem, 0.75rem + 0.25vw, 0.9rem);
     font-weight: 500;
 }
 
 .nav-links a {
     color: var(--text);
     text-decoration: none;
+    white-space: nowrap;
     cursor: pointer;
     transition: color 0.15s ease;
 }
@@ -79,14 +145,33 @@ header {
     font-weight: 600;
 }
 
+/* Navegación móvil inferior */
+.bottom-nav {
+    display: none;
+}
+
+/* Footer */
+.site-footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: clamp(0.75rem, 0.7rem + 0.15vw, 0.8rem);
+    padding: 8px 16px 32px;
+}
+
+.site-footer a {
+    color: var(--blue);
+    text-decoration: none;
+}
+
 /* Layout */
 .container {
     max-width: 960px;
+    width: 100%;
     margin: 32px auto;
     background: #fff;
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 40px;
+    padding: clamp(18px, 3vw, 40px);
     box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
 }
 
@@ -97,13 +182,34 @@ header {
     margin-top: 24px;
 }
 
-@media (max-width: 768px) {
-    .grid-2 { grid-template-columns: 1fr; }
+.layout-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
 }
 
-h1 { color: var(--blue); font-size: 1.75rem; font-weight: 800; margin-bottom: 6px; }
-h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10px; }
-.subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 22px; }
+h1 {
+    color: var(--blue);
+    font-size: clamp(1.3rem, 1rem + 1.5vw, 1.75rem);
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 6px;
+}
+
+h2 {
+    color: var(--blue);
+    font-size: clamp(1.02rem, 0.92rem + 0.5vw, 1.15rem);
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 24px 0 10px;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: clamp(0.85rem, 0.8rem + 0.25vw, 0.95rem);
+    margin-bottom: 22px;
+}
 
 /* Cards */
 .box { border: 1px solid var(--border); border-radius: 8px; padding: 20px; background: #fff; }
@@ -112,7 +218,7 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     background: #f8fafc;
     border: 1px solid var(--blue-border);
     border-radius: 8px;
-    padding: 22px;
+    padding: clamp(16px, 2.5vw, 22px);
     font-size: 0.875rem;
 }
 
@@ -124,7 +230,7 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     background: var(--blue-light);
     border: 1px solid var(--blue-border);
     border-radius: 10px;
-    padding: 44px;
+    padding: clamp(22px, 4vw, 44px) 16px;
     text-align: center;
     color: var(--blue);
     margin-bottom: 24px;
@@ -142,7 +248,7 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
 .role-card {
     border: 1.5px solid var(--border);
     border-radius: 12px;
-    padding: 26px 22px;
+    padding: clamp(18px, 2.5vw, 26px) clamp(14px, 2vw, 22px);
     text-align: center;
     background: #ffffff;
     display: flex;
@@ -164,7 +270,7 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
 }
 .consumer-card h3 {
     color: #4d7c0f;
-    font-size: 1.2rem;
+    font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.2rem);
 }
 .consumer-card:hover {
     transform: translateY(-2px);
@@ -178,7 +284,7 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
 }
 .merchant-card h3 {
     color: var(--blue);
-    font-size: 1.2rem;
+    font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.2rem);
 }
 .merchant-card:hover {
     transform: translateY(-2px);
@@ -199,17 +305,27 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     text-decoration: underline;
 }
 
-/* Botones Independientes (Sin conflictos de hover) */
+/* Botones */
+.btn-group { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+
+.btn, .btn-green, .btn-blue, .btn-outline {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.3;
+}
+
 .btn, .btn-green {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--green);
     color: #ffffff;
     border: none;
-    padding: 11px 24px;
+    padding: 11px 22px;
     border-radius: 8px;
     font-weight: 700;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: clamp(0.84rem, 0.8rem + 0.2vw, 0.9rem);
+    letter-spacing: -0.01em;
     transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -220,16 +336,25 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     box-shadow: 0 4px 12px rgba(132, 204, 22, 0.35);
 }
 
+.btn:disabled, .btn-green:disabled {
+    background: #e2e8f0;
+    color: #94a3b8;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
 .btn-blue {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--blue);
     color: #ffffff;
     border: none;
-    padding: 11px 24px;
+    padding: 11px 22px;
     border-radius: 8px;
     font-weight: 700;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: clamp(0.84rem, 0.8rem + 0.2vw, 0.9rem);
+    letter-spacing: -0.01em;
     transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -240,17 +365,25 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     box-shadow: 0 4px 12px rgba(29, 78, 216, 0.35);
 }
 
+.btn-blue:disabled {
+    background: #e2e8f0;
+    color: #94a3b8;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
 .btn-outline {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background: #ffffff;
     color: var(--blue);
     border: 1.5px solid var(--blue-border);
-    padding: 10px 20px;
+    padding: 10px 18px;
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
-    font-size: 0.9rem;
-    transition: background 0.15s ease, border-color 0.15s ease;
+    font-size: clamp(0.84rem, 0.8rem + 0.2vw, 0.9rem);
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
 .btn-outline:hover {
@@ -258,6 +391,8 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     border-color: var(--blue);
     color: var(--blue);
 }
+
+.btn-block { width: 100%; margin-bottom: 10px; }
 
 /* Forms */
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -282,70 +417,11 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
 }
 
 .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: #334155; margin-bottom: 4px; }
-.form-group input, .form-group select, textarea { width: 100%; border: none; outline: none; font-size: 0.95rem; font-weight: 500; color: var(--text); background: transparent; }
+.form-group input, .form-group select, textarea { width: 100%; max-width: 100%; border: none; outline: none; font-size: 0.95rem; font-weight: 500; color: var(--text); background: transparent; }
+.form-group input:disabled { color: var(--muted); cursor: not-allowed; }
 
 .helper-text { display: block; font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
 .error-msg { display: block; font-size: 0.8rem; color: var(--error-text); font-weight: 600; margin-top: 5px; }
-
-/* Buttons */
-.btn-group { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
-
-/* Botón Verde (Consumidor) */
-.btn {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background: var(--green);
-    color: #fff;
-    border: none;
-    padding: 11px 22px;
-    border-radius: 8px;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 0.9rem;
-    letter-spacing: -0.01em;
-    transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.btn:hover:not(:disabled) {
-    background: var(--green-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(132, 204, 22, 0.3);
-}
-
-.btn:disabled { background: #e2e8f0; color: #94a3b8; cursor: not-allowed; transform: none; box-shadow: none; }
-
-/* Botón Azul (Comerciante - Alto Contraste) */
-.btn-blue {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background: var(--blue);
-    color: #fff;
-    border: none;
-    padding: 11px 22px;
-    border-radius: 8px;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 0.9rem;
-    letter-spacing: -0.01em;
-    transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.btn-blue:hover:not(:disabled) {
-    background: var(--blue-dark);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.3);
-}
-
-.btn-blue:disabled { background: #e2e8f0; color: #94a3b8; cursor: not-allowed; transform: none; box-shadow: none; }
-
-.btn-outline {
-    background: #fff;
-    color: var(--blue);
-    border: 1px solid var(--blue-border);
-    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-}
-
-.btn-outline:hover { background: var(--blue-light); border-color: var(--blue); color: var(--blue); }
-
-.btn-block { width: 100%; margin-bottom: 10px; }
 
 /* Alerts */
 .alert { padding: 14px 18px; border-radius: 8px; margin-bottom: 22px; font-size: 0.9rem; border: 1px solid var(--blue-border); background: var(--blue-light); }
@@ -387,7 +463,7 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     color: #334155;
     padding: 6px 14px;
     font-size: 0.85rem;
-    white-space: nowrap;
+    max-width: 100%;
 }
 
 .history-list,
@@ -490,6 +566,7 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
 
 .detail-table {
     width: 100%;
+    table-layout: fixed;
     overflow: hidden;
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -504,9 +581,9 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
 }
 
 .detail-table td {
-    padding: 12px 16px;
+    padding: 12px 14px;
     color: #334155;
-    font-size: 0.95rem;
+    font-size: clamp(0.82rem, 0.78rem + 0.2vw, 0.95rem);
 }
 
 .detail-table tr.is-header td {
@@ -516,7 +593,7 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
 
 .detail-sep {
     color: var(--muted);
-    margin: 0 10px;
+    margin: 0 8px;
 }
 
 .metrics-list {
@@ -530,6 +607,10 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     margin: 0;
 }
 
+.action-stack {
+    margin-top: 18px;
+}
+
 .action-stack .btn {
     display: block;
     width: 100%;
@@ -537,52 +618,77 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     text-decoration: none;
 }
 
-/* --- NUEVOS ESTILOS PARA FLUJO DESCUBRIR --- */
-
-/* Layout principal de 2 columnas */
-.layout-grid {
-    display: grid; 
-    grid-template-columns: 2fr 1fr; 
-    gap: 30px; 
-    margin-top: 20px;
+/* Tarjetas de ofertas y sidebars */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+    gap: 20px;
 }
 
-/* Tarjetas de ofertas */
-.card-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-    gap: 20px; 
-}
 .offer-card {
-    border: 1px solid #DEE2E6; 
+    border: 1px solid #DEE2E6;
     border-radius: 8px;
-    padding: 15px; 
-    display: flex; 
-    flex-direction: column; 
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
     gap: 10px;
 }
+
 .offer-img-placeholder {
-    background: #F8F9FA; 
-    height: 120px; 
+    background: #F8F9FA;
+    height: 120px;
     border-radius: 6px;
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 
-/* Cajas laterales (Sidebar) */
 .sidebar-box {
-    border: 1px solid var(--primary-blue); 
+    border: 1px solid var(--primary-blue);
     border-radius: 8px;
-    padding: 20px; 
+    padding: 20px;
     margin-bottom: 20px;
 }
+
 .search-box {
-    border: 1px solid var(--primary-blue); 
-    border-radius: 8px; 
-    padding: 15px; 
+    border: 1px solid var(--primary-blue);
+    border-radius: 8px;
+    padding: 15px;
     margin-bottom: 20px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-top: 5px;
+}
+
+/* Detalle de producto y Favoritos */
+.product-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.price-box {
+    border: 1px solid #DEE2E6;
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+}
+
+.favorite-item {
+    border: 1px solid #DEE2E6;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
 }
 
 /* Panel visual del inicio del comercio */
@@ -621,7 +727,7 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     align-items: center;
     gap: 15px;
     color: #2463b8;
-    font-size: 1.65rem;
+    font-size: clamp(1.15rem, 0.9rem + 1vw, 1.65rem);
     font-weight: 700;
 }
 
@@ -629,23 +735,25 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     display: grid;
     width: 45px;
     height: 45px;
+    flex-shrink: 0;
     place-items: center;
     border-radius: 9px;
     background: #2468bf;
     color: #fff;
-    font-size: 1.65rem;
+    font-size: clamp(1.15rem, 0.9rem + 1vw, 1.65rem);
     line-height: 1;
 }
 
 .merchant-page .merchant-nav {
     display: flex;
-    gap: 24px;
+    flex-wrap: wrap;
+    gap: 10px 24px;
 }
 
 .merchant-page .merchant-nav a,
 .merchant-page .merchant-account a {
     color: #1258af;
-    font-size: .9rem;
+    font-size: clamp(0.8rem, 0.76rem + 0.2vw, 0.9rem);
     font-weight: 500;
     text-decoration: none;
     white-space: nowrap;
@@ -653,6 +761,7 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
 
 .merchant-page .merchant-account {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
 }
 
@@ -667,25 +776,27 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
     margin-bottom: 26px;
 }
 
 .merchant-page .dashboard-heading h1 {
     margin-bottom: 3px;
     color: #2463b8;
-    font-size: 2.15rem;
+    font-size: clamp(1.4rem, 1.05rem + 1.6vw, 2.15rem);
 }
 
 .merchant-page .dashboard-heading p,
 .merchant-page .delivery-card p,
 .merchant-page .management-card p {
-    font-size: 1.05rem;
+    font-size: clamp(0.9rem, 0.85rem + 0.25vw, 1.05rem);
 }
 
 .merchant-page .heading-status {
     display: flex;
     align-items: center;
-    gap: 15px;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
 .merchant-page .date-chip,
@@ -743,7 +854,7 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     display: block;
     margin-bottom: 6px;
     color: #334155;
-    font-size: 1.65rem;
+    font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.65rem);
 }
 
 .merchant-page .metric-card small {
@@ -760,11 +871,14 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
 .merchant-page .action-grid button,
 .merchant-page .delivery-actions button {
     min-height: 59px;
+    padding: 10px 12px;
     border: 1px solid #1464c1;
     border-radius: 7px;
     background: #fff;
     color: #0758b3;
-    font: 600 1rem 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: clamp(0.85rem, 0.8rem + 0.25vw, 1rem);
     cursor: pointer;
 }
 
@@ -778,7 +892,7 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
 .merchant-page .section-title {
     margin-bottom: 12px;
     color: #1762be;
-    font-size: 1.35rem;
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
 }
 
 .merchant-page .delivery-card {
@@ -808,7 +922,7 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
 .merchant-page .management-card h2 {
     margin-bottom: 13px;
     color: #1762be;
-    font-size: 1.35rem;
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
 }
 
 .merchant-page .management-card p {
@@ -860,6 +974,18 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     color: #1762be;
 }
 
+/* ===== Flujo 4 · Inventario y publicación del comercio ===== */
+.btn-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+.btn-grid-3 .btn, .offer-actions .btn { width: 100%; text-align: center; }
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+.stat-grid .stat-card { margin: 0; }
+.offer-actions { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 10px; margin-top: 14px; }
+.offer-actions.offer-actions-2 { grid-template-columns: 1fr 1fr; }
+.history-card .action-stack { margin-top: 14px; }
+
+/* =========================================================
+   MEDIA QUERIES GLOBALES (RESPONSIVE)
+   ========================================================= */
 @media (min-width: 901px) and (max-width: 1250px) {
     .merchant-page #main-header {
         padding-right: 20px;
@@ -868,18 +994,40 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
 
     .merchant-page .merchant-logo {
         gap: 8px;
-        font-size: 1.35rem;
     }
 
     .merchant-page .merchant-logo .logo-mark {
         width: 40px;
         height: 40px;
-        font-size: 1.35rem;
     }
 
     .merchant-page .dashboard-columns {
         grid-template-columns: minmax(0, 1.55fr) minmax(330px, 1fr);
         gap: 20px;
+    }
+}
+
+@media (max-width: 960px) {
+    header {
+        padding: 14px 20px;
+    }
+
+    .menu {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        border-top: 1px solid #f1f5f9;
+        padding-top: 10px;
+    }
+
+    .right-links {
+        margin-left: auto;
+    }
+
+    .container {
+        width: auto;
+        margin: 20px 16px;
+        padding: 24px 20px;
     }
 }
 
@@ -893,7 +1041,7 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
         order: 3;
         width: 100%;
         justify-content: center;
-        gap: 24px;
+        gap: 10px 20px;
     }
 
     .merchant-page .merchant-account {
@@ -901,8 +1049,8 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     }
 
     .merchant-page .merchant-dashboard {
-        width: calc(100% - 40px);
-        padding: 25px 20px;
+        width: 100%;
+        padding: 24px 20px;
     }
 
     .merchant-page .dashboard-columns {
@@ -910,24 +1058,103 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     }
 }
 
-@media (max-width: 600px) {
-    .merchant-page #main-header {
-        padding: 16px 20px;
+@media (max-width: 768px) {
+    header {
+        padding: 12px 16px;
     }
 
-    .merchant-page .merchant-logo {
-        font-size: 1.3rem;
+    .menu {
+        display: none;
+    }
+
+    .container {
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        padding: 20px 16px 96px;
+    }
+
+    .grid-2,
+    .layout-grid,
+    .check-grid,
+    .form-grid,
+    .role-grid,
+    .product-detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        background: #fff;
+        border-top: 1px solid var(--border);
+        padding: 6px 2px calc(6px + env(safe-area-inset-bottom));
+    }
+
+    .bottom-nav a {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 2px;
+        padding: 0 2px;
+        font-size: clamp(0.6rem, 2.6vw, 0.72rem);
+        line-height: 1.15;
+        color: var(--muted);
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .bottom-nav a span {
+        font-size: clamp(1rem, 4.5vw, 1.2rem);
+    }
+
+    .bottom-nav a.active {
+        color: var(--blue);
+        font-weight: 700;
+    }
+
+    .site-footer {
+        padding-bottom: 88px;
+    }
+}
+
+@media (max-width: 600px) {
+    .btn-grid-3,
+    .stat-grid,
+    .offer-actions,
+    .offer-actions.offer-actions-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .favorite-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .merchant-page #main-header {
+        padding: 14px 16px;
+    }
+
+    .merchant-page .merchant-dashboard {
+        padding: 20px 14px;
     }
 
     .merchant-page .merchant-nav {
-        flex-wrap: wrap;
-        gap: 5px 12px;
+        gap: 6px 12px;
     }
 
     .merchant-page .dashboard-heading {
         align-items: flex-start;
         flex-direction: column;
-        gap: 16px;
+        gap: 14px;
     }
 
     .merchant-page .heading-status,
@@ -937,52 +1164,27 @@ h2 { color: var(--blue); font-size: 1.15rem; font-weight: 700; margin: 24px 0 10
     }
 
     .merchant-page .metrics,
-    .merchant-page .action-grid {
+    .merchant-page .action-grid,
+    .merchant-page .delivery-actions {
         grid-template-columns: 1fr;
     }
 }
-.search-box input {
-    border: none; 
-    outline: none; 
-    width: 100%; 
-    margin-top: 5px;
-}
 
-/* Detalle de producto y Favoritos */
-.product-detail-grid { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr 1fr; 
-    gap: 15px; 
-    margin-top: 20px;
-}
-.price-box { 
-    border: 1px solid #DEE2E6; 
-    border-radius: 6px; 
-    padding: 15px; 
-    text-align: center; 
-}
-.favorite-item {
-    border: 1px solid #DEE2E6; 
-    padding: 20px; 
-    border-radius: 8px; 
-    margin-bottom: 15px; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-}
+@media (max-width: 480px) {
+    header {
+        padding: 10px 12px;
+        gap: 8px;
+    }
 
-/* ===== Flujo 4 · Inventario y publicación del comercio (F4-01 a F4-14) ===== */
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
-.btn-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
-.btn-grid-3 .btn, .offer-actions .btn { width: 100%; text-align: center; }
-.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
-.stat-grid .stat-card { margin: 0; }
-.offer-actions { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 10px; margin-top: 14px; }
-.offer-actions.offer-actions-2 { grid-template-columns: 1fr 1fr; }
-.history-card .action-stack { margin-top: 14px; }
-.form-group input:disabled { color: var(--muted); cursor: not-allowed; }
-.action-stack { margin-top: 18px; }
+    .right-links {
+        gap: 8px 10px;
+    }
 
-@media (max-width: 600px) {
-    .form-grid, .btn-grid-3, .stat-grid, .offer-actions, .offer-actions.offer-actions-2 { grid-template-columns: 1fr; }
+    .container {
+        padding: 16px 12px 96px;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
 }
