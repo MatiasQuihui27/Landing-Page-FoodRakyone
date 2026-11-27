@@ -25,7 +25,9 @@ function renderPublicarExcedente() {
                 </div>
 
                 <h2>Foto del alimento *</h2>
-                ${fotoPlaceholder('🍲', 'Foto placeholder adjunta: pan.jpg')}
+                <div class="placeholder-graphic foto-preview">
+                    <img src="../assets/images/pan.png" alt="Foto del producto: Pack de pan">
+                </div>
 
                 <div class="btn-grid-3">${btnDesc(50)}${btnDesc(30)}${btnDesc(70)}</div>
                 <div class="stat-grid">

@@ -1188,3 +1188,29 @@ h2 {
         grid-template-columns: 1fr;
     }
 }
+
+.placeholder-graphic.mapa {
+    padding: 0;
+    overflow: hidden;
+}
+
+.mapa-img {
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+}
+
+.placeholder-graphic.foto-preview {
+    padding: 16px;
+}
+
+.placeholder-graphic.foto-preview img {
+    width: auto;
+    max-width: 100%;
+    max-height: 140px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}

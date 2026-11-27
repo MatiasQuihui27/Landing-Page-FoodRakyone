@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Reservas pendientes del día en FoodRakyone para comercios.">
+    <title>FoodRakyone - Reservas de hoy</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .reservas-tabs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+        .reservas-tabs button {
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid #1E61B9;
+            background: #FFFFFF;
+            color: #1E61B9;
+        }
+        .reservas-tabs button.tab-active {
+            background: #8BC34A;
+            border-color: #8BC34A;
+            color: #1A1A1A;
+        }
+        .delivery-card + .delivery-card {
+            margin-top: 14px;
+        }
+        .pending-total-box {
+            margin-top: 12px;
+            padding: 12px;
+            background: #F8F9FA;
+            border-radius: 6px;
+        }
+        @media (max-width: 600px) {
+            .reservas-tabs {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body class="merchant-page" data-view="f5-reservas-hoy">
+    <a class="skip" href="#app">Saltar al contenido</a>
+
+    <header id="main-header">
+        <a class="logo" href="#" onclick="navigate('f5-01-InicioDelComercio'); return false;">
+            <span class="logo-mark" aria-hidden="true">🛒</span>
+            <span>FoodRakyone</span>
+        </a>
+
+        <nav class="nav-links menu merchant-nav" aria-label="Principal">
+            <a href="#" onclick="navigate('f5-01-InicioDelComercio'); return false;">Inicio</a>
+            <a href="#" onclick="navigate('f4-01-InventarioDeOfertas'); return false;">Ofertas</a>
+            <a href="#">[Reservas]</a>
+            <a href="#" onclick="navigate('al-por-mayor'); return false;">Minoristas</a>
+            <a href="#" onclick="navigate('datos-local'); return false;">Configuración</a>
+        </nav>
+
+        <div class="nav-links right-links merchant-account">
+            <a href="#" onclick="alert('Sin notificaciones nuevas'); return false;">Notificaciones</a>
+            <span>·</span>
+            <a href="#" onclick="logout(); return false;">Cuenta</a>
+        </div>
+    </header>
+
+    <main id="app" class="merchant-dashboard">
+        <div class="dashboard-heading">
+            <div>
+                <h1>Reservas de hoy</h1>
+                <p>07/10/2026 · 2 entregas pendientes · Horario límite más próximo primero.</p>
+            </div>
+            <div class="heading-status">
+                <span class="date-chip">Horario recojo: 18:00–20:00</span>
+            </div>
+        </div>
+
+        <div class="dashboard-columns">
+            <section aria-label="Reservas pendientes de hoy">
+                <div class="reservas-tabs">
+                    <button type="button" class="tab-active">Pendientes de hoy</button>
+                    <button type="button" onclick="navigate('f5-12-HistorialDelComercio')">Historial</button>
+                    <button type="button" onclick="navigate('f5-07-validarCodigoDeRecojo')">Validar código</button>
+                </div>
+
+                <h2 class="section-title">Por hora límite</h2>
+
+                <article class="delivery-card">
+                    <p class="delivery-name">R-1042 · Pagada · Pendiente</p>
+                    <p><strong>Pack de pan × 2</strong></p>
+                    <p>Ana Torres · Límite hoy 20:00</p>
+                    <p>Ventana: 18:00–20:00 · Total S/20.00</p>
+                    <div class="delivery-actions">
+                        <button type="button" onclick="navigate('detalle-reserva')">Ver detalle</button>
+                        <button type="button" onclick="navigate('f5-07-validarCodigoDeRecojo')">Validar código</button>
+                    </div>
+                </article>
+
+                <article class="delivery-card">
+                    <p class="delivery-name">R-1044 · Pagada · Pendiente</p>
+                    <p><strong>Leche sellada 1 L × 1</strong></p>
+                    <p>Luis Pérez · Límite hoy 20:00</p>
+                    <p>Ventana: 18:00–20:00 · Total S/4.00</p>
+                    <div class="delivery-actions">
+                        <button type="button" onclick="navigate('detalle-reserva')">Ver detalle</button>
+                        <button type="button" onclick="navigate('f5-07-validarCodigoDeRecojo')">Validar código</button>
+                    </div>
+                </article>
+            </section>
+
+            <aside class="management-card">
+                <h2>Orden y estado</h2>
+                <p>Ambas reservas terminan a las 20:00. En caso de empate se muestra primero la más antigua.</p>
+                <p>Una reserva entregada desaparece de pendientes.</p>
+
+                <hr>
+
+                <h3>Tu local hoy</h3>
+                <p>Bodega San Luis</p>
+                <p>Av. Canadá 120, La Victoria</p>
+                <p>Ventana: 18:00–20:00</p>
+
+                <div class="pending-total-box">
+                    <strong>Total pendiente: S/24.00</strong>
+                    <p>R-1042: S/20.00 · R-1044: S/4.00</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <script src="../js/state.js"></script>
+    <script src="../js/shared.js"></script>
+</body>
+
+</html>
