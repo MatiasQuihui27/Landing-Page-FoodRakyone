@@ -1214,3 +1214,26 @@ h2 {
     display: block;
     margin: 0 auto;
 }
+
+.logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    display: block;
+    border-radius: 6px;
+}
+
+header .logo,
+.merchant-page .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
